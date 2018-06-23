@@ -7,9 +7,10 @@ using System.Threading.Tasks;
 
 namespace Atelie.Entidades
 {
-    class ClienteMedida
+    public class ClienteMedida
     {
         public int Id { get; set; }
+        public int ClienteId { get; set; }
         public TipoMedidaCliente Tipo { get; set; }
         public decimal Valor { get; set; }
     }

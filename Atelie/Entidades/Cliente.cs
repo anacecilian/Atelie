@@ -12,7 +12,7 @@ namespace Atelie.Entidades
         public string Nome { get; set; }
         public string Telefone { get; set; }
         public DateTime DataCadastro { get; set; }
-        public Endereco Endereco { get; set; }
+        public ClienteEndereco Endereco { get; set; }
         public List<ClienteMedida> Medidas { get; set; }
     }
 }

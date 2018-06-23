@@ -10,7 +10,7 @@ namespace Atelie.Entidades
     class EncomendaMaterial
     {
         public int Id { get; set; }
-        public int IdEncomenda { get; set; }
+        public int EncomendaId { get; set; }
         public TipoItemEncomenda Tipo { get; set; }
         public string Descricao { get; set; }
         public int Quantidade { get; set; }

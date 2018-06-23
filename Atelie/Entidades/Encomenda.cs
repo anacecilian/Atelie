@@ -9,6 +9,7 @@ namespace Atelie.Entidades
     class Encomenda
     {
         public int Id { get; set; }
+        public int ClienteId { get; set; }
         public decimal Preco { get; set; }
         public DateTime DataPagamento { get; set; }
         public DateTime DataEntregaPrevista { get; set; }
