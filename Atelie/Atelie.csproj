@@ -45,6 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BancoDeDados\ClientDAO.cs" />
     <Compile Include="DAL.cs" />
     <Compile Include="Entidades\Cliente.cs" />
     <Compile Include="Entidades\ClienteMedida.cs" />
@@ -62,6 +63,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Servico\ClienteServico.cs" />
     <EmbeddedResource Include="FormCliente.resx">
       <DependentUpon>FormCliente.cs</DependentUpon>
     </EmbeddedResource>

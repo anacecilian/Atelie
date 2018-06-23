@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Atelie.BancoDeDados
 {
-    class ClienteDAO
+    class ClientDAO
     {
     }
 }
