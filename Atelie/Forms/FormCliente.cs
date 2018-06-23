@@ -25,12 +25,13 @@ namespace Atelie
 
         private void FormCliente_Load(object sender, System.EventArgs e)
         {
-
+            cmbTipoMedida.SelectedIndex = 0;
         }
 
         private void btnPesquisarEnd_Click(object sender, EventArgs e)
         {
             string cep = txtCEPNum.Text;
+            //TODO
             //método de pesquisar o endereço pelo cep
             Endereco end = new Endereco();
             if (end.Id > 0)
@@ -63,24 +64,71 @@ namespace Atelie
 
             else
             {
-                TipoMedidaCliente tipo = (TipoMedidaCliente)cmbTipoMedida.SelectedIndex + 1;
-
-                //verificar valores
-                //MessageBox.Show("Tipo: "+ (int)tipo + "; Valor: "+ txtMedida.Text, "Verificar valores", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
+                TipoMedidaCliente tipo = (TipoMedidaCliente)cmbTipoMedida.SelectedIndex;
+                
                 if (!Medidas.Any(x => x.Tipo == tipo))
-                    Medidas.Add(
-                        new ClienteMedida
-                        {
-                            Tipo = tipo
-                            ,
-                            Valor = Convert.ToDecimal(txtMedida.Text)
-                        });
+                {
+                    Medidas.Add(new ClienteMedida
+                    {
+                        Tipo = tipo
+                                                ,
+                        Valor = Convert.ToDecimal(txtMedida.Text)
+                    });
+                }
                 else
-                    MessageBox.Show("Já existe este tipo de medida para o cliente.", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                {
+                    Medidas.Where(x => x.Tipo == tipo).FirstOrDefault().Valor = Convert.ToDecimal(txtMedida.Text);
+                }
 
-                dgvMedidas.DataSource = (from m in Medidas select new { Valor = m.Valor, Tipo = RetornaTextoTipoMedida(tipo)}).ToList();
+                dgvMedidas.DataSource = (from m in Medidas select new { Valor = m.Valor, Tipo = RetornaTextoTipoMedida(m.Tipo) }).ToList();
+                txtMedida.Text = string.Empty;
+                cmbTipoMedida.SelectedIndex = 0;
             }
+        }
+
+        private void btnSalvar_Click(object sender, EventArgs e)
+        {
+            Cliente cliente = new Cliente
+            {
+                DataCadastro = DateTime.Now
+                ,
+                Medidas = Medidas
+                ,
+                Nome = txtNome.Text
+                ,
+                Telefone = txtNumeroTel.Text
+                ,
+                Endereco = new ClienteEndereco
+                {
+                    Complemento = txtComplemento.Text
+                    ,
+                    Numero = txtNumeroEnd.Text
+                }
+            };
+            
+            if (clienteServico.SalvarCliente(cliente))
+            {
+                MessageBox.Show("Cliente cadastrado com sucesso.", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                LimparCamposFormulario();
+            }
+            else
+                MessageBox.Show("Não foi possível salvar o cliente.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+
+        private void LimparCamposFormulario()
+        {
+            txtNome.Text =
+            txtNumeroTel.Text =
+            txtCEPNum.Text =
+            txtLogradouro.Text =
+            txtNumeroEnd.Text =
+            txtComplemento.Text =
+            txtBairro.Text =
+            txtMedida.Text = string.Empty;
+
+            txtLogradouro.Enabled =
+            txtBairro.Enabled =
+            txtCEPNum.Enabled = true;
         }
 
         private string RetornaTextoTipoMedida(TipoMedidaCliente tipo)
@@ -88,7 +136,7 @@ namespace Atelie
             switch (tipo)
             {
                 case TipoMedidaCliente.AlturaBusto:
-                    return "Altura do bustp";
+                    return "Altura do busto";
                 case TipoMedidaCliente.Busto:
                     return "Busto";
                 case TipoMedidaCliente.Cintura:
@@ -110,55 +158,5 @@ namespace Atelie
             }
         }
 
-        private void btnSalvar_Click(object sender, EventArgs e)
-        {
-            //verificar valores
-            MessageBox.Show("Nome: ", "Verificar valores", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-            Cliente cliente = new Cliente
-            {
-                DataCadastro = DateTime.Now
-                ,
-                Medidas = Medidas
-                ,
-                Nome = txtNome.Text
-                ,
-                Telefone = txtNumeroTel.Text
-                ,
-                Endereco = new ClienteEndereco
-                {
-                    Complemento = txtComplemento.Text
-                    ,
-                    Numero = txtNumeroEnd.Text
-                }
-            };
-
-            //verificar valores
-            MessageBox.Show(cliente.ToString(), "Verificar valores", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-            //if (clienteServico.SalvarCliente(cliente))
-            //{
-            //    MessageBox.Show("Cliente cadastrado com sucesso.", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            //    LimparCamposFormulario();
-            //}
-            //else
-            //    MessageBox.Show("Não foi possível salvar o cliente.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-        }
-
-        private void LimparCamposFormulario()
-        {
-            txtNome.Text =
-            txtNumeroTel.Text =
-            txtCEPNum.Text =
-            txtLogradouro.Text =
-            txtNumeroEnd.Text =
-            txtComplemento.Text =
-            txtBairro.Text =
-            txtMedida.Text = string.Empty;
-
-            txtLogradouro.Enabled =
-            txtBairro.Enabled =
-            txtCEPNum.Enabled = true;
-        }
     }
 }

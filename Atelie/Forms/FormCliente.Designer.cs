@@ -256,9 +256,9 @@
             // 
             this.btnAdiconarMedida.Location = new System.Drawing.Point(407, 16);
             this.btnAdiconarMedida.Name = "btnAdiconarMedida";
-            this.btnAdiconarMedida.Size = new System.Drawing.Size(75, 23);
+            this.btnAdiconarMedida.Size = new System.Drawing.Size(100, 23);
             this.btnAdiconarMedida.TabIndex = 9;
-            this.btnAdiconarMedida.Text = "Adicionar";
+            this.btnAdiconarMedida.Text = "Salvar medida";
             this.btnAdiconarMedida.UseVisualStyleBackColor = true;
             this.btnAdiconarMedida.Click += new System.EventHandler(this.btnAdiconarMedida_Click);
             // 
@@ -282,6 +282,7 @@
             // 
             this.cmbTipoMedida.FormattingEnabled = true;
             this.cmbTipoMedida.Items.AddRange(new object[] {
+            "- Selecione -",
             "Comprimento da calça",
             "Comprimento da saia",
             "Comprimento da manga longa",
@@ -367,6 +368,7 @@
             this.Controls.Add(this.gbxDadosPessoais);
             this.Name = "FormCliente";
             this.Text = "Cadastro de cliente";
+            this.Load += new System.EventHandler(this.FormCliente_Load);
             this.gbxDadosPessoais.ResumeLayout(false);
             this.gbxDadosPessoais.PerformLayout();
             this.gbxEndereco.ResumeLayout(false);
