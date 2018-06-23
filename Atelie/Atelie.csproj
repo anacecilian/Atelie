@@ -45,7 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BancoDeDados\ClientDAO.cs" />
+    <Compile Include="BancoDeDados\ClienteDAO.cs" />
     <Compile Include="DAL.cs" />
     <Compile Include="Entidades\Cliente.cs" />
     <Compile Include="Entidades\ClienteMedida.cs" />
