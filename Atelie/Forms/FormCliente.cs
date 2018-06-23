@@ -16,51 +16,105 @@ namespace Atelie
     public partial class FormCliente : Form
     {
         public List<ClienteMedida> Medidas { get; set; } = new List<ClienteMedida>();
-        public ClienteServico clienteServico = new ClienteServico(); 
+        public ClienteServico clienteServico = new ClienteServico();
 
         public FormCliente()
         {
             InitializeComponent();
         }
-        
+
         private void FormCliente_Load(object sender, System.EventArgs e)
         {
-            
+
         }
 
         private void btnPesquisarEnd_Click(object sender, EventArgs e)
         {
-            string cep = txtCEPNum.Text + txtCEPDig.Text;
+            string cep = txtCEPNum.Text;
             //método de pesquisar o endereço pelo cep
             Endereco end = new Endereco();
             if (end.Id > 0)
             {
                 txtLogradouro.Text = end.Logradouro;
                 txtBairro.Text = end.Bairro;
-                txtCEPDig.Enabled = 
-                txtCEPNum.Enabled = 
-                txtLogradouro.Enabled = 
+                txtCEPNum.Enabled =
+                txtLogradouro.Enabled =
                 txtBairro.Enabled = false;
             }
+            else
+            {
+                txtLogradouro.Text =
+                txtBairro.Text = string.Empty;
+                txtCEPNum.Enabled = false;
+                txtLogradouro.Enabled =
+                txtBairro.Enabled = true;
+            }
         }
-        
+
         private void btnAdiconarMedida_Click(object sender, EventArgs e)
         {
-            TipoMedidaCliente tipo = (TipoMedidaCliente)Convert.ToByte(cmbTipoMedida.SelectedValue);
-            if (!Medidas.Any(x => x.Tipo == tipo))
-                Medidas.Add(
-                    new ClienteMedida
-                    {
-                        Tipo = tipo
-                        ,
-                        Valor = Convert.ToDecimal(txtMedida.Text)
-                    });
+            decimal medida = 0.0M;
+            Decimal.TryParse(txtMedida.Text, out medida);
+
+            if (cmbTipoMedida.SelectedIndex <= 0)
+                MessageBox.Show("Selecione um tipo de medida.", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            else if (medida <= 0)
+                MessageBox.Show("Digite uma medida válida.", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
             else
-                MessageBox.Show("Já existe este tipo de medida para o cliente.", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            {
+                TipoMedidaCliente tipo = (TipoMedidaCliente)cmbTipoMedida.SelectedIndex + 1;
+
+                //verificar valores
+                //MessageBox.Show("Tipo: "+ (int)tipo + "; Valor: "+ txtMedida.Text, "Verificar valores", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                if (!Medidas.Any(x => x.Tipo == tipo))
+                    Medidas.Add(
+                        new ClienteMedida
+                        {
+                            Tipo = tipo
+                            ,
+                            Valor = Convert.ToDecimal(txtMedida.Text)
+                        });
+                else
+                    MessageBox.Show("Já existe este tipo de medida para o cliente.", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                dgvMedidas.DataSource = (from m in Medidas select new { Valor = m.Valor, Tipo = RetornaTextoTipoMedida(tipo)}).ToList();
+            }
+        }
+
+        private string RetornaTextoTipoMedida(TipoMedidaCliente tipo)
+        {
+            switch (tipo)
+            {
+                case TipoMedidaCliente.AlturaBusto:
+                    return "Altura do bustp";
+                case TipoMedidaCliente.Busto:
+                    return "Busto";
+                case TipoMedidaCliente.Cintura:
+                    return "Cintura";
+                case TipoMedidaCliente.ComprimentoCalca:
+                    return "Comprimento da calça";
+                case TipoMedidaCliente.ComprimentoMangaCurta:
+                    return "Comprimento da manga curta";
+                case TipoMedidaCliente.ComprimentoMangaLonga:
+                    return "Comprimento da manga longa";
+                case TipoMedidaCliente.ComprimentoSaia:
+                    return "Comprimento da saia";
+                case TipoMedidaCliente.OmbroAOmbro:
+                    return "Ombro a ombro";
+                case TipoMedidaCliente.Quadril:
+                    return "Quadril";
+                default:
+                    return string.Empty;
+            }
         }
 
         private void btnSalvar_Click(object sender, EventArgs e)
         {
+            //verificar valores
+            MessageBox.Show("Nome: ", "Verificar valores", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
             Cliente cliente = new Cliente
             {
                 DataCadastro = DateTime.Now
@@ -69,7 +123,7 @@ namespace Atelie
                 ,
                 Nome = txtNome.Text
                 ,
-                Telefone = txtDDD.Text + txtNumeroTel.Text
+                Telefone = txtNumeroTel.Text
                 ,
                 Endereco = new ClienteEndereco
                 {
@@ -78,22 +132,24 @@ namespace Atelie
                     Numero = txtNumeroEnd.Text
                 }
             };
-            if (clienteServico.SalvarCliente(cliente))
-            {
-                MessageBox.Show("Cliente cadastrado com sucesso.", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                LimparCamposFormulario();
-            }
-            else
-                MessageBox.Show("Não foi possível salvar o cliente.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+            //verificar valores
+            MessageBox.Show(cliente.ToString(), "Verificar valores", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            //if (clienteServico.SalvarCliente(cliente))
+            //{
+            //    MessageBox.Show("Cliente cadastrado com sucesso.", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            //    LimparCamposFormulario();
+            //}
+            //else
+            //    MessageBox.Show("Não foi possível salvar o cliente.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
         private void LimparCamposFormulario()
         {
             txtNome.Text =
             txtNumeroTel.Text =
-            txtDDD.Text =
             txtCEPNum.Text =
-            txtCEPDig.Text =
             txtLogradouro.Text =
             txtNumeroEnd.Text =
             txtComplemento.Text =
@@ -102,7 +158,6 @@ namespace Atelie
 
             txtLogradouro.Enabled =
             txtBairro.Enabled =
-            txtCEPDig.Enabled =
             txtCEPNum.Enabled = true;
         }
     }
