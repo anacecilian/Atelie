@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Atelie.Enumeradores
 {
-    enum TipoItemEncomenda
+    public enum TipoItemEncomenda
     {
         Tecido = 1
         ,

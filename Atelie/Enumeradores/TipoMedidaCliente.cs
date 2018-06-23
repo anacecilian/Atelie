@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Atelie.Enumeradores
 {
-    enum TipoMedidaCliente
+    public enum TipoMedidaCliente
     {
         ComprimentoCalca = 1
             ,

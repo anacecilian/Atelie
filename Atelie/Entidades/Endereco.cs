@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Atelie.Entidades
 {
-    class Endereco
+    public class Endereco
     {
         public int Id { get; set; }
         public string CEP { get; set; }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Atelie.Entidades
 {
-    class ClienteEndereco
+    public class ClienteEndereco
     {
         public string Numero { get; set; }
         public string Complemento { get; set; }

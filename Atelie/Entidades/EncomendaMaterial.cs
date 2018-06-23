@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Atelie.Entidades
 {
-    class EncomendaMaterial
+    public class EncomendaMaterial
     {
         public int Id { get; set; }
         public int EncomendaId { get; set; }

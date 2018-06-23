@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Atelie.Entidades
 {
-    class Encomenda
+    public class Encomenda
     {
         public int Id { get; set; }
         public int ClienteId { get; set; }

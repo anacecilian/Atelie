@@ -44,9 +44,9 @@
             this.txtCEPDig = new System.Windows.Forms.TextBox();
             this.txtCEPNum = new System.Windows.Forms.TextBox();
             this.lblCEP = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.txtComplemento = new System.Windows.Forms.TextBox();
             this.lblComplemento = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtNumeroEnd = new System.Windows.Forms.TextBox();
             this.lblNumeroEnd = new System.Windows.Forms.Label();
             this.txtLogradouro = new System.Windows.Forms.TextBox();
             this.lblLogradouro = new System.Windows.Forms.Label();
@@ -153,9 +153,9 @@
             this.gbxEndereco.Controls.Add(this.txtCEPDig);
             this.gbxEndereco.Controls.Add(this.txtCEPNum);
             this.gbxEndereco.Controls.Add(this.lblCEP);
-            this.gbxEndereco.Controls.Add(this.textBox2);
+            this.gbxEndereco.Controls.Add(this.txtComplemento);
             this.gbxEndereco.Controls.Add(this.lblComplemento);
-            this.gbxEndereco.Controls.Add(this.textBox1);
+            this.gbxEndereco.Controls.Add(this.txtNumeroEnd);
             this.gbxEndereco.Controls.Add(this.lblNumeroEnd);
             this.gbxEndereco.Controls.Add(this.txtLogradouro);
             this.gbxEndereco.Controls.Add(this.lblLogradouro);
@@ -224,12 +224,12 @@
             this.lblCEP.TabIndex = 6;
             this.lblCEP.Text = "CEP";
             // 
-            // textBox2
+            // txtComplemento
             // 
-            this.textBox2.Location = new System.Drawing.Point(97, 121);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(179, 20);
-            this.textBox2.TabIndex = 5;
+            this.txtComplemento.Location = new System.Drawing.Point(97, 121);
+            this.txtComplemento.Name = "txtComplemento";
+            this.txtComplemento.Size = new System.Drawing.Size(179, 20);
+            this.txtComplemento.TabIndex = 5;
             // 
             // lblComplemento
             // 
@@ -240,12 +240,12 @@
             this.lblComplemento.TabIndex = 4;
             this.lblComplemento.Text = "Complemento";
             // 
-            // textBox1
+            // txtNumeroEnd
             // 
-            this.textBox1.Location = new System.Drawing.Point(9, 121);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(78, 20);
-            this.textBox1.TabIndex = 3;
+            this.txtNumeroEnd.Location = new System.Drawing.Point(9, 121);
+            this.txtNumeroEnd.Name = "txtNumeroEnd";
+            this.txtNumeroEnd.Size = new System.Drawing.Size(78, 20);
+            this.txtNumeroEnd.TabIndex = 3;
             // 
             // lblNumeroEnd
             // 
@@ -372,6 +372,7 @@
             this.btnSalvar.TabIndex = 3;
             this.btnSalvar.Text = "Salvar";
             this.btnSalvar.UseVisualStyleBackColor = true;
+            this.btnSalvar.Click += new System.EventHandler(this.btnSalvar_Click);
             // 
             // btnCancelar
             // 
@@ -439,9 +440,9 @@
         private System.Windows.Forms.TextBox txtCEPDig;
         private System.Windows.Forms.TextBox txtCEPNum;
         private System.Windows.Forms.Label lblCEP;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox txtComplemento;
         private System.Windows.Forms.Label lblComplemento;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtNumeroEnd;
         private System.Windows.Forms.Label lblNumeroEnd;
         private System.Windows.Forms.TextBox txtLogradouro;
         private System.Windows.Forms.Label lblLogradouro;
