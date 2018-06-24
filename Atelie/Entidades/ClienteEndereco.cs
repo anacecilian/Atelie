@@ -10,7 +10,6 @@ namespace Atelie.Entidades
     {
         public string Numero { get; set; }
         public string Complemento { get; set; }
-        public int EnderecoId { get; set; }
-        public int ClienteId { get; set; }
+        public Endereco Endereco { get; set; }
     }
 }

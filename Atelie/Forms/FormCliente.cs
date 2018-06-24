@@ -17,6 +17,7 @@ namespace Atelie
     {
         public List<ClienteMedida> Medidas { get; set; } = new List<ClienteMedida>();
         public ClienteServico clienteServico = new ClienteServico();
+        public Cliente cliente { get; set; }
 
         public FormCliente()
         {
@@ -88,23 +89,18 @@ namespace Atelie
 
         private void btnSalvar_Click(object sender, EventArgs e)
         {
-            Cliente cliente = new Cliente
+            if (cliente.Id <= 0)
             {
-                DataCadastro = DateTime.Now
-                ,
-                Medidas = Medidas
-                ,
-                Nome = txtNome.Text
-                ,
-                Telefone = txtNumeroTel.Text
-                ,
-                Endereco = new ClienteEndereco
-                {
-                    Complemento = txtComplemento.Text
-                    ,
-                    Numero = txtNumeroEnd.Text
-                }
-            };
+                cliente.DataCadastro = DateTime.Now;
+            }
+            cliente.Medidas = Medidas;
+            cliente.Nome = txtNome.Text;
+            cliente.Telefone = txtNumeroTel.Text;
+            cliente.ClienteEndereco.Endereco.Logradouro = txtLogradouro.Text;
+            cliente.ClienteEndereco.Endereco.Bairro = txtBairro.Text;
+            cliente.ClienteEndereco.Endereco.CEP = txtCEPNum.Text;
+            cliente.ClienteEndereco.Complemento = txtComplemento.Text;
+            cliente.ClienteEndereco.Numero = txtNumeroEnd.Text;                
             
             if (clienteServico.SalvarCliente(cliente))
             {
