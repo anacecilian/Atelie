@@ -30,46 +30,50 @@
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.cmbCliente = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.dtpDataEntregaPrev = new System.Windows.Forms.DateTimePicker();
             this.label3 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtPreco = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.txtDataEntregaEfet = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.txtDataPagamento = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.txtDetalhes = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.label8 = new System.Windows.Forms.Label();
-            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.txtQuantidade = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
-            this.textBox6 = new System.Windows.Forms.TextBox();
+            this.txtDescricao = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dgvMaterial = new System.Windows.Forms.DataGridView();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
+            this.txtUnidadeMedida = new System.Windows.Forms.TextBox();
+            this.Descricao = new System.Windows.Forms.DataGridViewLinkColumn();
+            this.Quantidade = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.UnidadeMedida = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Excluir = new System.Windows.Forms.DataGridViewButtonColumn();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvMaterial)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.textBox4);
+            this.groupBox1.Controls.Add(this.txtDetalhes);
             this.groupBox1.Controls.Add(this.label6);
-            this.groupBox1.Controls.Add(this.textBox3);
+            this.groupBox1.Controls.Add(this.txtDataPagamento);
             this.groupBox1.Controls.Add(this.label5);
-            this.groupBox1.Controls.Add(this.textBox2);
+            this.groupBox1.Controls.Add(this.txtDataEntregaEfet);
             this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Controls.Add(this.textBox1);
+            this.groupBox1.Controls.Add(this.txtPreco);
             this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.dateTimePicker1);
+            this.groupBox1.Controls.Add(this.dtpDataEntregaPrev);
             this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.comboBox1);
+            this.groupBox1.Controls.Add(this.cmbCliente);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Location = new System.Drawing.Point(13, 13);
             this.groupBox1.Name = "groupBox1";
@@ -81,21 +85,23 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(7, 20);
+            this.label1.Location = new System.Drawing.Point(10, 20);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(39, 13);
             this.label1.TabIndex = 0;
             this.label1.Text = "Cliente";
             // 
-            // comboBox1
+            // cmbCliente
             // 
-            this.comboBox1.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.comboBox1.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(10, 37);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(327, 21);
-            this.comboBox1.TabIndex = 1;
+            this.cmbCliente.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.cmbCliente.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cmbCliente.DisplayMember = "Nome";
+            this.cmbCliente.FormattingEnabled = true;
+            this.cmbCliente.Location = new System.Drawing.Point(13, 37);
+            this.cmbCliente.Name = "cmbCliente";
+            this.cmbCliente.Size = new System.Drawing.Size(327, 21);
+            this.cmbCliente.TabIndex = 1;
+            this.cmbCliente.ValueMember = "Id";
             // 
             // label2
             // 
@@ -106,13 +112,13 @@
             this.label2.TabIndex = 2;
             this.label2.Text = "Data de entrega prevista";
             // 
-            // dateTimePicker1
+            // dtpDataEntregaPrev
             // 
-            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePicker1.Location = new System.Drawing.Point(160, 82);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(121, 20);
-            this.dateTimePicker1.TabIndex = 3;
+            this.dtpDataEntregaPrev.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpDataEntregaPrev.Location = new System.Drawing.Point(160, 82);
+            this.dtpDataEntregaPrev.Name = "dtpDataEntregaPrev";
+            this.dtpDataEntregaPrev.Size = new System.Drawing.Size(121, 20);
+            this.dtpDataEntregaPrev.TabIndex = 3;
             // 
             // label3
             // 
@@ -123,29 +129,29 @@
             this.label3.TabIndex = 4;
             this.label3.Text = "Preço";
             // 
-            // textBox1
+            // txtPreco
             // 
-            this.textBox1.Location = new System.Drawing.Point(13, 82);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(119, 20);
-            this.textBox1.TabIndex = 5;
+            this.txtPreco.Location = new System.Drawing.Point(13, 82);
+            this.txtPreco.Name = "txtPreco";
+            this.txtPreco.Size = new System.Drawing.Size(119, 20);
+            this.txtPreco.TabIndex = 5;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(13, 109);
+            this.label4.Location = new System.Drawing.Point(10, 109);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(119, 13);
             this.label4.TabIndex = 6;
             this.label4.Text = "Data de entrega efetiva";
             // 
-            // textBox2
+            // txtDataEntregaEfet
             // 
-            this.textBox2.Location = new System.Drawing.Point(13, 126);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.ReadOnly = true;
-            this.textBox2.Size = new System.Drawing.Size(119, 20);
-            this.textBox2.TabIndex = 7;
+            this.txtDataEntregaEfet.Location = new System.Drawing.Point(13, 126);
+            this.txtDataEntregaEfet.Name = "txtDataEntregaEfet";
+            this.txtDataEntregaEfet.ReadOnly = true;
+            this.txtDataEntregaEfet.Size = new System.Drawing.Size(119, 20);
+            this.txtDataEntregaEfet.TabIndex = 7;
             // 
             // label5
             // 
@@ -156,13 +162,13 @@
             this.label5.TabIndex = 8;
             this.label5.Text = "Data do pagamento";
             // 
-            // textBox3
+            // txtDataPagamento
             // 
-            this.textBox3.Location = new System.Drawing.Point(160, 125);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.ReadOnly = true;
-            this.textBox3.Size = new System.Drawing.Size(119, 20);
-            this.textBox3.TabIndex = 9;
+            this.txtDataPagamento.Location = new System.Drawing.Point(160, 125);
+            this.txtDataPagamento.Name = "txtDataPagamento";
+            this.txtDataPagamento.ReadOnly = true;
+            this.txtDataPagamento.Size = new System.Drawing.Size(119, 20);
+            this.txtDataPagamento.TabIndex = 9;
             // 
             // label6
             // 
@@ -173,23 +179,23 @@
             this.label6.TabIndex = 10;
             this.label6.Text = "Detalhes";
             // 
-            // textBox4
+            // txtDetalhes
             // 
-            this.textBox4.Location = new System.Drawing.Point(372, 37);
-            this.textBox4.Multiline = true;
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(344, 108);
-            this.textBox4.TabIndex = 11;
+            this.txtDetalhes.Location = new System.Drawing.Point(372, 37);
+            this.txtDetalhes.Multiline = true;
+            this.txtDetalhes.Name = "txtDetalhes";
+            this.txtDetalhes.Size = new System.Drawing.Size(344, 108);
+            this.txtDetalhes.TabIndex = 11;
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.dataGridView1);
+            this.groupBox2.Controls.Add(this.txtUnidadeMedida);
+            this.groupBox2.Controls.Add(this.dgvMaterial);
             this.groupBox2.Controls.Add(this.button1);
-            this.groupBox2.Controls.Add(this.textBox6);
+            this.groupBox2.Controls.Add(this.txtDescricao);
             this.groupBox2.Controls.Add(this.label9);
-            this.groupBox2.Controls.Add(this.textBox5);
+            this.groupBox2.Controls.Add(this.txtQuantidade);
             this.groupBox2.Controls.Add(this.label8);
-            this.groupBox2.Controls.Add(this.comboBox2);
             this.groupBox2.Controls.Add(this.label7);
             this.groupBox2.Location = new System.Drawing.Point(13, 190);
             this.groupBox2.Name = "groupBox2";
@@ -201,35 +207,27 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(10, 20);
+            this.label7.Location = new System.Drawing.Point(10, 59);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(28, 13);
+            this.label7.Size = new System.Drawing.Size(99, 13);
             this.label7.TabIndex = 0;
-            this.label7.Text = "Tipo";
-            // 
-            // comboBox2
-            // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(13, 37);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(192, 21);
-            this.comboBox2.TabIndex = 1;
+            this.label7.Text = "Unidade de medida";
             // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(13, 61);
+            this.label8.Location = new System.Drawing.Point(10, 20);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(62, 13);
             this.label8.TabIndex = 2;
             this.label8.Text = "Quantidade";
             // 
-            // textBox5
+            // txtQuantidade
             // 
-            this.textBox5.Location = new System.Drawing.Point(13, 77);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(100, 20);
-            this.textBox5.TabIndex = 3;
+            this.txtQuantidade.Location = new System.Drawing.Point(13, 36);
+            this.txtQuantidade.Name = "txtQuantidade";
+            this.txtQuantidade.Size = new System.Drawing.Size(100, 20);
+            this.txtQuantidade.TabIndex = 3;
             // 
             // label9
             // 
@@ -240,13 +238,13 @@
             this.label9.TabIndex = 4;
             this.label9.Text = "Descrição";
             // 
-            // textBox6
+            // txtDescricao
             // 
-            this.textBox6.Location = new System.Drawing.Point(227, 37);
-            this.textBox6.Multiline = true;
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(371, 60);
-            this.textBox6.TabIndex = 5;
+            this.txtDescricao.Location = new System.Drawing.Point(227, 37);
+            this.txtDescricao.Multiline = true;
+            this.txtDescricao.Name = "txtDescricao";
+            this.txtDescricao.Size = new System.Drawing.Size(371, 60);
+            this.txtDescricao.TabIndex = 5;
             // 
             // button1
             // 
@@ -256,14 +254,21 @@
             this.button1.TabIndex = 6;
             this.button1.Text = "Adicionar material";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // dataGridView1
+            // dgvMaterial
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(13, 113);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(585, 150);
-            this.dataGridView1.TabIndex = 7;
+            this.dgvMaterial.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvMaterial.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvMaterial.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Descricao,
+            this.Quantidade,
+            this.UnidadeMedida,
+            this.Excluir});
+            this.dgvMaterial.Location = new System.Drawing.Point(13, 113);
+            this.dgvMaterial.Name = "dgvMaterial";
+            this.dgvMaterial.Size = new System.Drawing.Size(710, 150);
+            this.dgvMaterial.TabIndex = 7;
             // 
             // button2
             // 
@@ -283,6 +288,46 @@
             this.button3.Text = "Cancelar";
             this.button3.UseVisualStyleBackColor = true;
             // 
+            // txtUnidadeMedida
+            // 
+            this.txtUnidadeMedida.Location = new System.Drawing.Point(13, 76);
+            this.txtUnidadeMedida.Name = "txtUnidadeMedida";
+            this.txtUnidadeMedida.Size = new System.Drawing.Size(183, 20);
+            this.txtUnidadeMedida.TabIndex = 8;
+            // 
+            // Descricao
+            // 
+            this.Descricao.DataPropertyName = "Descricao";
+            this.Descricao.HeaderText = "Descrição";
+            this.Descricao.Name = "Descricao";
+            this.Descricao.ReadOnly = true;
+            this.Descricao.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.Descricao.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.Descricao.VisitedLinkColor = System.Drawing.Color.Blue;
+            // 
+            // Quantidade
+            // 
+            this.Quantidade.DataPropertyName = "Quantidade";
+            this.Quantidade.HeaderText = "Quantidade";
+            this.Quantidade.Name = "Quantidade";
+            this.Quantidade.ReadOnly = true;
+            // 
+            // UnidadeMedida
+            // 
+            this.UnidadeMedida.DataPropertyName = "UnidadeMedida";
+            this.UnidadeMedida.HeaderText = "Unidade de medida";
+            this.UnidadeMedida.Name = "UnidadeMedida";
+            this.UnidadeMedida.ReadOnly = true;
+            // 
+            // Excluir
+            // 
+            this.Excluir.DataPropertyName = "Excluir";
+            this.Excluir.HeaderText = "Excluir";
+            this.Excluir.Name = "Excluir";
+            this.Excluir.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.Excluir.Text = "Excluir";
+            this.Excluir.ToolTipText = "Excluir";
+            // 
             // FormEncomenda
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -298,7 +343,7 @@
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvMaterial)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -306,28 +351,32 @@
         #endregion
 
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.DateTimePicker dtpDataEntregaPrev;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox txtDataPagamento;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox txtDataEntregaEfet;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtPreco;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.TextBox txtDetalhes;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.TextBox textBox6;
+        private System.Windows.Forms.TextBox txtDescricao;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.TextBox txtQuantidade;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.ComboBox comboBox2;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dgvMaterial;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.TextBox txtUnidadeMedida;
+        private System.Windows.Forms.ComboBox cmbCliente;
+        private System.Windows.Forms.DataGridViewLinkColumn Descricao;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Quantidade;
+        private System.Windows.Forms.DataGridViewTextBoxColumn UnidadeMedida;
+        private System.Windows.Forms.DataGridViewButtonColumn Excluir;
     }
 }

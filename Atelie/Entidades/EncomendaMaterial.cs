@@ -11,8 +11,8 @@ namespace Atelie.Entidades
     {
         public int Id { get; set; }
         public int EncomendaId { get; set; }
-        public TipoItemEncomenda Tipo { get; set; }
+        public string UnidadeMedida { get; set; }
         public string Descricao { get; set; }
-        public int Quantidade { get; set; }
+        public decimal Quantidade { get; set; }
     }
 }
