@@ -11,6 +11,7 @@ namespace Atelie.Entidades
         public int Id { get; set; }
         public string Nome { get; set; }
         public string Telefone { get; set; }
+        public string CPF { get; set; }
         public DateTime DataCadastro { get; set; }
         public ClienteEndereco ClienteEndereco { get; set; }
         public List<ClienteMedida> Medidas { get; set; }

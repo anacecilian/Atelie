@@ -19,9 +19,14 @@ namespace Atelie
         public ClienteServico clienteServico = new ClienteServico();
         public Cliente cliente { get; set; }
 
-        public FormCliente()
+        public FormCliente(int clienteId = 0)
         {
             InitializeComponent();
+            if (clienteId > 0)
+            {
+                //TODO
+                AtualizarGridMedidas();
+            }
         }
 
         private void FormCliente_Load(object sender, System.EventArgs e)
@@ -81,7 +86,7 @@ namespace Atelie
                     Medidas.Where(x => x.Tipo == tipo).FirstOrDefault().Valor = Convert.ToDecimal(txtMedida.Text);
                 }
 
-                dgvMedidas.DataSource = (from m in Medidas select new { Valor = m.Valor, Tipo = RetornaTextoTipoMedida(m.Tipo) }).ToList();
+                AtualizarGridMedidas();
                 txtMedida.Text = string.Empty;
                 cmbTipoMedida.SelectedIndex = 0;
             }
@@ -154,5 +159,9 @@ namespace Atelie
             }
         }
 
+        private void AtualizarGridMedidas()
+        {
+            dgvMedidas.DataSource = (from m in Medidas select new { Valor = m.Valor, Tipo = RetornaTextoTipoMedida(m.Tipo) }).ToList();
+        }
     }
 }

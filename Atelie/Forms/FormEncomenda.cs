@@ -23,12 +23,17 @@ namespace Atelie.Forms
         public int indexItemProvaEditando { get; set; } = -1;
         public Encomenda encomenda { get; set; }
 
-        public FormEncomenda()
+        public FormEncomenda(int EncomendaId = 0, int ClienteId = 0)
         {
             InitializeComponent();
 
             List<Cliente> clientes = new List<Cliente>();
             cmbCliente.DataSource = clientes;
+
+            if (EncomendaId > 0)
+            {
+                //TODO
+            }
         }
 
         private void btnSalvarMaterial_Click(object sender, EventArgs e)
@@ -124,6 +129,9 @@ namespace Atelie.Forms
                 encomenda.DataEntregaPrevista = dataEntrega;
                 encomenda.Materiais = Materiais;
                 encomenda.Preco = preco;
+                encomenda.Provas = Provas;
+
+                //TODO
             }
         }
 
