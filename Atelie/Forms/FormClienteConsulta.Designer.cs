@@ -37,14 +37,14 @@
             this.dgvCliente = new System.Windows.Forms.DataGridView();
             this.btnPesquisar = new System.Windows.Forms.Button();
             this.tbnCancelar = new System.Windows.Forms.Button();
-            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Nome = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CPF = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Telefone = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ConsultarEncomendas = new System.Windows.Forms.DataGridViewLinkColumn();
-            this.ConsultarProvas = new System.Windows.Forms.DataGridViewLinkColumn();
-            this.Editar = new System.Windows.Forms.DataGridViewLinkColumn();
             this.Excluir = new System.Windows.Forms.DataGridViewLinkColumn();
+            this.Editar = new System.Windows.Forms.DataGridViewLinkColumn();
+            this.ConsultarProvas = new System.Windows.Forms.DataGridViewLinkColumn();
+            this.ConsultarEncomendas = new System.Windows.Forms.DataGridViewLinkColumn();
+            this.Telefone = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CPF = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Nome = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCliente)).BeginInit();
             this.SuspendLayout();
             // 
@@ -138,43 +138,25 @@
             this.tbnCancelar.UseVisualStyleBackColor = true;
             this.tbnCancelar.Click += new System.EventHandler(this.tbnCancelar_Click);
             // 
-            // Id
+            // Excluir
             // 
-            this.Id.DataPropertyName = "Id";
-            this.Id.HeaderText = "Id";
-            this.Id.Name = "Id";
-            this.Id.ReadOnly = true;
-            this.Id.Visible = false;
+            this.Excluir.HeaderText = "Excluir";
+            this.Excluir.Name = "Excluir";
+            this.Excluir.ReadOnly = true;
+            this.Excluir.Text = "Excluir";
+            this.Excluir.ToolTipText = "Excluir";
+            this.Excluir.UseColumnTextForLinkValue = true;
+            this.Excluir.VisitedLinkColor = System.Drawing.Color.Blue;
             // 
-            // Nome
+            // Editar
             // 
-            this.Nome.DataPropertyName = "Nome";
-            this.Nome.HeaderText = "Nome";
-            this.Nome.Name = "Nome";
-            this.Nome.ReadOnly = true;
-            // 
-            // CPF
-            // 
-            this.CPF.DataPropertyName = "CPF";
-            this.CPF.HeaderText = "CPF";
-            this.CPF.Name = "CPF";
-            this.CPF.ReadOnly = true;
-            // 
-            // Telefone
-            // 
-            this.Telefone.DataPropertyName = "Telefone";
-            this.Telefone.HeaderText = "Telefone";
-            this.Telefone.Name = "Telefone";
-            this.Telefone.ReadOnly = true;
-            // 
-            // ConsultarEncomendas
-            // 
-            this.ConsultarEncomendas.HeaderText = "Consultar encomendas";
-            this.ConsultarEncomendas.Name = "ConsultarEncomendas";
-            this.ConsultarEncomendas.ReadOnly = true;
-            this.ConsultarEncomendas.Text = "Consultar encomendas";
-            this.ConsultarEncomendas.UseColumnTextForLinkValue = true;
-            this.ConsultarEncomendas.VisitedLinkColor = System.Drawing.Color.Blue;
+            this.Editar.HeaderText = "Editar";
+            this.Editar.Name = "Editar";
+            this.Editar.ReadOnly = true;
+            this.Editar.Text = "Editar";
+            this.Editar.ToolTipText = "Editar";
+            this.Editar.UseColumnTextForLinkValue = true;
+            this.Editar.VisitedLinkColor = System.Drawing.Color.Blue;
             // 
             // ConsultarProvas
             // 
@@ -185,23 +167,43 @@
             this.ConsultarProvas.UseColumnTextForLinkValue = true;
             this.ConsultarProvas.VisitedLinkColor = System.Drawing.Color.Blue;
             // 
-            // Editar
+            // ConsultarEncomendas
             // 
-            this.Editar.HeaderText = "Editar";
-            this.Editar.Name = "Editar";
-            this.Editar.ReadOnly = true;
-            this.Editar.Text = "Editar";
-            this.Editar.UseColumnTextForLinkValue = true;
-            this.Editar.VisitedLinkColor = System.Drawing.Color.Blue;
+            this.ConsultarEncomendas.HeaderText = "Consultar encomendas";
+            this.ConsultarEncomendas.Name = "ConsultarEncomendas";
+            this.ConsultarEncomendas.ReadOnly = true;
+            this.ConsultarEncomendas.Text = "Consultar encomendas";
+            this.ConsultarEncomendas.UseColumnTextForLinkValue = true;
+            this.ConsultarEncomendas.VisitedLinkColor = System.Drawing.Color.Blue;
             // 
-            // Excluir
+            // Telefone
             // 
-            this.Excluir.HeaderText = "Excluir";
-            this.Excluir.Name = "Excluir";
-            this.Excluir.ReadOnly = true;
-            this.Excluir.Text = "Excluir";
-            this.Excluir.UseColumnTextForLinkValue = true;
-            this.Excluir.VisitedLinkColor = System.Drawing.Color.Blue;
+            this.Telefone.DataPropertyName = "Telefone";
+            this.Telefone.HeaderText = "Telefone";
+            this.Telefone.Name = "Telefone";
+            this.Telefone.ReadOnly = true;
+            // 
+            // CPF
+            // 
+            this.CPF.DataPropertyName = "CPF";
+            this.CPF.HeaderText = "CPF";
+            this.CPF.Name = "CPF";
+            this.CPF.ReadOnly = true;
+            // 
+            // Nome
+            // 
+            this.Nome.DataPropertyName = "Nome";
+            this.Nome.HeaderText = "Nome";
+            this.Nome.Name = "Nome";
+            this.Nome.ReadOnly = true;
+            // 
+            // Id
+            // 
+            this.Id.DataPropertyName = "Id";
+            this.Id.HeaderText = "Id";
+            this.Id.Name = "Id";
+            this.Id.ReadOnly = true;
+            this.Id.Visible = false;
             // 
             // FormClienteConsulta
             // 

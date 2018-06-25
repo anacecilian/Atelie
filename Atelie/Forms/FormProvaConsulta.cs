@@ -18,11 +18,22 @@ namespace Atelie.Forms
         public List<ProvaModelo> Provas { get; set; }
 
         ProvaServico provaServico;
+        ClienteServico clienteServico;
 
-        public FormProvaConsulta()
+        public FormProvaConsulta(int clienteId = 0)
         {
             InitializeComponent();
             provaServico = new ProvaServico();
+            clienteServico = new ClienteServico();
+            cmbCliente.DataSource = clienteServico.PesquisaClientes(string.Empty, string.Empty, string.Empty);
+
+            if (clienteId > 0)
+            {
+                Provas = provaServico.ObterListagem(clienteId, DateTime.Now);
+                AtualizarGridProvas();
+                cmbCliente.Text = Provas.First().NomeCliente;
+                cmbCliente.Enabled = dtpData.Enabled = btnPesquisar.Enabled = false;
+            }
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
@@ -45,8 +56,11 @@ namespace Atelie.Forms
         {
             int ClienteId = 0;
             DateTime data = DateTime.MinValue;
+            string val = string.Empty;
+            if (cmbCliente.SelectedValue != null)
+                val = cmbCliente.SelectedValue.ToString();
 
-            Int32.TryParse(cmbCliente.SelectedValue.ToString(), out ClienteId);
+            Int32.TryParse(val, out ClienteId);
             DateTime.TryParse(dtpData.Text, out data);
 
             Pesquisar(ClienteId, data);

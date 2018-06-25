@@ -51,11 +51,13 @@
             // 
             // cmbCliente
             // 
+            this.cmbCliente.DisplayMember = "Nome";
             this.cmbCliente.FormattingEnabled = true;
             this.cmbCliente.Location = new System.Drawing.Point(16, 30);
             this.cmbCliente.Name = "cmbCliente";
             this.cmbCliente.Size = new System.Drawing.Size(281, 21);
             this.cmbCliente.TabIndex = 1;
+            this.cmbCliente.ValueMember = "Id";
             // 
             // label2
             // 
@@ -111,7 +113,7 @@
             // 
             // NomeCliente
             // 
-            this.NomeCliente.DataPropertyName = "Nome";
+            this.NomeCliente.DataPropertyName = "NomeCliente";
             this.NomeCliente.HeaderText = "Nome do cliente";
             this.NomeCliente.Name = "NomeCliente";
             this.NomeCliente.ReadOnly = true;

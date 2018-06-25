@@ -8,6 +8,12 @@ namespace Atelie.Entidades
 {
     public class Encomenda
     {
+        public Encomenda()
+        {
+            Provas = new List<EncomendaProva>();
+            Materiais = new List<EncomendaMaterial>();
+        }
+
         public int Id { get; set; }
         public int ClienteId { get; set; }
         public decimal Preco { get; set; }

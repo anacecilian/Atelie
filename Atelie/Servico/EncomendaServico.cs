@@ -27,7 +27,7 @@ namespace Atelie.Servico
                 ,
                 Descricao = "xxx"
                 ,
-                Id = 1
+                Id = 18
                 ,
                 Preco = 50
                 ,
@@ -46,7 +46,7 @@ namespace Atelie.Servico
                 ,
                 Descricao = "xxx"
                 ,
-                Id = 1
+                Id = 18
                 ,
                 Preco = 50
                 ,
@@ -57,6 +57,20 @@ namespace Atelie.Servico
         public bool Salvar(Encomenda encomenda)
         {
             return true;
+        }
+
+        public bool Excluir(int encomendaId, int clienteId)
+        {
+            try
+            {
+                //TODO
+                //chamar método excluir no banco 
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
         }
     }
 }

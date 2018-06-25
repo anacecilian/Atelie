@@ -15,8 +15,9 @@ namespace Atelie.Forms
     public partial class FormEncomendaConsulta : Form
     {
         private const int indexColunaEditar = 0;
-        private const int indexColunaEncomendaId = 4;
-        private const int indexColunaClienteId = 5;
+        private const int indexColunaExcluir = 1;
+        private const int indexColunaEncomendaId = 5;
+        private const int indexColunaClienteId = 6;
 
         public FormEncomenda formEncomenda { get; set; } = new FormEncomenda();
 
@@ -31,12 +32,15 @@ namespace Atelie.Forms
             InitializeComponent();
             encomendaServico = new EncomendaServico();
             clienteServico = new ClienteServico();
+            cmbCliente.DataSource = clienteServico.PesquisaClientes(string.Empty, string.Empty, string.Empty);
 
             if (ClienteId > 0)
             {
                 Pesquisar(ClienteId, DateTime.MinValue);
                 cliente = clienteServico.RetornaCliente(ClienteId);
                 AtualizarGridEncomendas();
+                cmbCliente.Text = cliente.Nome;
+                cmbCliente.Enabled = dtpDataEntrega.Enabled = btnPesquisar.Enabled = false;
             }
         }
 
@@ -44,11 +48,22 @@ namespace Atelie.Forms
         {
             int EncomendaId = Convert.ToInt32(dgvEncomenda.Rows[e.RowIndex].Cells[indexColunaEncomendaId].Value);
             int ClienteId = Convert.ToInt32(dgvEncomenda.Rows[e.RowIndex].Cells[indexColunaClienteId].Value);
-            
+
             if (e.ColumnIndex == indexColunaEditar)
             {
                 formEncomenda = new FormEncomenda(EncomendaId, ClienteId);
                 formEncomenda.ShowDialog();
+            }
+            else if (e.ColumnIndex == indexColunaExcluir)
+            {
+                if (encomendaServico.Excluir(EncomendaId, ClienteId))
+                {
+                    MessageBox.Show("Encomenda excluída com sucesso.", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    Encomendas.RemoveAt(e.RowIndex);
+                    AtualizarGridEncomendas();
+                }
+                else
+                    MessageBox.Show("Não foi possível excluir a encomenda.", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -60,12 +75,13 @@ namespace Atelie.Forms
 
         private void btnPesquisar_Click(object sender, EventArgs e)
         {
-            //TODO
-
             int ClienteId = 0;
             DateTime dataEntrega = DateTime.MinValue;
+            string val = string.Empty;
+            if (cmbCliente.SelectedValue != null)
+                val = cmbCliente.SelectedValue.ToString();
 
-            Int32.TryParse(cmbCliente.SelectedValue.ToString(), out ClienteId);
+            Int32.TryParse(val, out ClienteId);
             DateTime.TryParse(dtpDataEntrega.Text, out dataEntrega);
 
             Pesquisar(ClienteId, dataEntrega);
@@ -73,12 +89,19 @@ namespace Atelie.Forms
 
         private void AtualizarGridEncomendas()
         {
-            dgvEncomenda.DataSource = (from e in Encomendas select new {
-                NomeCliente = cliente.Nome
-                , DataEntrega = e.DataEntregaPrevista
-                , Descricao = e.Descricao
-                , EncomendaId = e.Id
-                , ClienteId = cliente.Id}).ToList();
+            dgvEncomenda.DataSource = (from e in Encomendas
+                                       select new
+                                       {
+                                           NomeCliente = cliente.Nome
+,
+                                           DataEntrega = e.DataEntregaPrevista
+,
+                                           Descricao = e.Descricao
+,
+                                           EncomendaId = e.Id
+,
+                                           ClienteId = cliente.Id
+                                       }).ToList();
 
             if (Encomendas.Any())
             {
