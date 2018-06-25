@@ -4,9 +4,9 @@ using System.Linq;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
 
-namespace Atelie.Model
+namespace Atelie.BancoDeDados
 {
-    class ConectaBanco
+    class DAO
     {
         private string servidor;
         private string bancoDados;
@@ -15,7 +15,7 @@ namespace Atelie.Model
         private string porta;
         private MySqlConnection conexao;
 
-        public ConectaBanco(string bd, string usr, string pss, string svr = "localhost", string porta = "3306")
+        public DAO(string bd, string usr, string pss, string svr = "localhost", string porta = "3306")
         {
             PreparaConexao(bd, usr, pss, svr, porta);
             servidor = svr;
@@ -24,11 +24,13 @@ namespace Atelie.Model
             senha = pss;
             this.porta = porta;
         }
+
         private void PreparaConexao(string bd, string usr, string pss, string svr = "localhost", string port = "3306")
         {
             string connectionString = "Server=" + svr + ";" + "Port=" + port + ";Database=" + bd + ";" + "User=" + usr + ";" + "pwd=" + pss + ";";
             conexao = new MySqlConnection(connectionString);
         }
+
         private bool AbreConexao()
         {
             try
@@ -245,6 +247,7 @@ namespace Atelie.Model
                             list[6].Add(dataReader["data_alteracao"] + "");
                             list[7].Add(dataReader["situacao"] + "");
                         }
+                        break;
                     default:
                         throw new Exception("Tabela não tratada no programa!");
                     
