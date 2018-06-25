@@ -20,5 +20,11 @@ namespace Atelie.Entidades
         public DateTime DataCadastro { get; set; }
         public ClienteEndereco ClienteEndereco { get; set; }
         public List<ClienteMedida> Medidas { get; set; }
+
+        public override string ToString()
+        {
+            string cadastrocliente = "nome=" + Nome + "',CPF='" + CPF + "',cel_num='" + Telefone + "'";
+            return cadastrocliente;
+        }
     }
 }

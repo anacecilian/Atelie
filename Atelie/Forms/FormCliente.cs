@@ -127,14 +127,8 @@ namespace Atelie
             cliente.ClienteEndereco.Complemento = txtComplemento.Text;
             cliente.ClienteEndereco.Numero = txtNumeroEnd.Text;
             cliente.CPF = txtCEPNum.Text;
+           
             
-            public override string ToString()
-            {
-                string cadastrocliente = "nome=" + cliente.Nome + "',CPF='" + cliente.CPF + "',cel_num='" + cliente.Telefone +"'";
-                return cadastrocliente;
-            }
-            
-
             if (clienteServico.Salvar(cliente))
             {
                 MessageBox.Show("Cliente cadastrado com sucesso.", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
