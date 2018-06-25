@@ -16,6 +16,7 @@ namespace Atelie.Forms
         FormClienteConsulta formClienteConsulta;
         FormEncomenda formEncomenda;
         FormEncomendaConsulta formEncomendaConsulta;
+        FormProvaConsulta formProvaConsulta;
 
         public FormMenu()
         {
@@ -44,6 +45,12 @@ namespace Atelie.Forms
         {
             formEncomendaConsulta = new FormEncomendaConsulta();
             formEncomendaConsulta.Show();
+        }
+
+        private void btnConsultarProva_Click(object sender, EventArgs e)
+        {
+            formProvaConsulta = new FormProvaConsulta();
+            formProvaConsulta.Show();
         }
     }
 }

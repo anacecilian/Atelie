@@ -34,8 +34,11 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.btnConsultarEncomenda = new System.Windows.Forms.Button();
             this.btnCadastrarEncomenda = new System.Windows.Forms.Button();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.btnConsultarProva = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -100,17 +103,39 @@
             this.btnCadastrarEncomenda.UseVisualStyleBackColor = true;
             this.btnCadastrarEncomenda.Click += new System.EventHandler(this.btnCadastrarEncomenda_Click);
             // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.btnConsultarProva);
+            this.groupBox3.Location = new System.Drawing.Point(205, 13);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(90, 80);
+            this.groupBox3.TabIndex = 2;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Prova";
+            // 
+            // btnConsultarProva
+            // 
+            this.btnConsultarProva.Location = new System.Drawing.Point(7, 20);
+            this.btnConsultarProva.Name = "btnConsultarProva";
+            this.btnConsultarProva.Size = new System.Drawing.Size(75, 23);
+            this.btnConsultarProva.TabIndex = 0;
+            this.btnConsultarProva.Text = "Consultar";
+            this.btnConsultarProva.UseVisualStyleBackColor = true;
+            this.btnConsultarProva.Click += new System.EventHandler(this.btnConsultarProva_Click);
+            // 
             // FormMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(306, 101);
+            this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Name = "FormMenu";
             this.Text = "FormMenu";
             this.groupBox1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
+            this.groupBox3.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -123,5 +148,7 @@
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Button btnConsultarEncomenda;
         private System.Windows.Forms.Button btnCadastrarEncomenda;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.Button btnConsultarProva;
     }
 }
