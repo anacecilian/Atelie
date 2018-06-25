@@ -35,16 +35,16 @@
             this.label3 = new System.Windows.Forms.Label();
             this.txtTelefone = new System.Windows.Forms.TextBox();
             this.dgvCliente = new System.Windows.Forms.DataGridView();
+            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Nome = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CPF = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Telefone = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ConsultarEncomendas = new System.Windows.Forms.DataGridViewLinkColumn();
+            this.ConsultarProvas = new System.Windows.Forms.DataGridViewLinkColumn();
+            this.Editar = new System.Windows.Forms.DataGridViewLinkColumn();
+            this.Excluir = new System.Windows.Forms.DataGridViewLinkColumn();
             this.btnPesquisar = new System.Windows.Forms.Button();
             this.tbnCancelar = new System.Windows.Forms.Button();
-            this.Excluir = new System.Windows.Forms.DataGridViewLinkColumn();
-            this.Editar = new System.Windows.Forms.DataGridViewLinkColumn();
-            this.ConsultarProvas = new System.Windows.Forms.DataGridViewLinkColumn();
-            this.ConsultarEncomendas = new System.Windows.Forms.DataGridViewLinkColumn();
-            this.Telefone = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CPF = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Nome = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCliente)).BeginInit();
             this.SuspendLayout();
             // 
@@ -118,6 +118,73 @@
             this.dgvCliente.TabIndex = 6;
             this.dgvCliente.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCliente_CellClick);
             // 
+            // Id
+            // 
+            this.Id.DataPropertyName = "Id";
+            this.Id.HeaderText = "Id";
+            this.Id.Name = "Id";
+            this.Id.ReadOnly = true;
+            this.Id.Visible = false;
+            // 
+            // Nome
+            // 
+            this.Nome.DataPropertyName = "Nome";
+            this.Nome.HeaderText = "Nome";
+            this.Nome.Name = "Nome";
+            this.Nome.ReadOnly = true;
+            // 
+            // CPF
+            // 
+            this.CPF.DataPropertyName = "CPF";
+            this.CPF.HeaderText = "CPF";
+            this.CPF.Name = "CPF";
+            this.CPF.ReadOnly = true;
+            // 
+            // Telefone
+            // 
+            this.Telefone.DataPropertyName = "Telefone";
+            this.Telefone.HeaderText = "Telefone";
+            this.Telefone.Name = "Telefone";
+            this.Telefone.ReadOnly = true;
+            // 
+            // ConsultarEncomendas
+            // 
+            this.ConsultarEncomendas.HeaderText = "Consultar encomendas";
+            this.ConsultarEncomendas.Name = "ConsultarEncomendas";
+            this.ConsultarEncomendas.ReadOnly = true;
+            this.ConsultarEncomendas.Text = "Consultar encomendas";
+            this.ConsultarEncomendas.UseColumnTextForLinkValue = true;
+            this.ConsultarEncomendas.VisitedLinkColor = System.Drawing.Color.Blue;
+            // 
+            // ConsultarProvas
+            // 
+            this.ConsultarProvas.HeaderText = "Consultar provas";
+            this.ConsultarProvas.Name = "ConsultarProvas";
+            this.ConsultarProvas.ReadOnly = true;
+            this.ConsultarProvas.Text = "Consultar provas";
+            this.ConsultarProvas.UseColumnTextForLinkValue = true;
+            this.ConsultarProvas.VisitedLinkColor = System.Drawing.Color.Blue;
+            // 
+            // Editar
+            // 
+            this.Editar.HeaderText = "Editar";
+            this.Editar.Name = "Editar";
+            this.Editar.ReadOnly = true;
+            this.Editar.Text = "Editar";
+            this.Editar.ToolTipText = "Editar";
+            this.Editar.UseColumnTextForLinkValue = true;
+            this.Editar.VisitedLinkColor = System.Drawing.Color.Blue;
+            // 
+            // Excluir
+            // 
+            this.Excluir.HeaderText = "Excluir";
+            this.Excluir.Name = "Excluir";
+            this.Excluir.ReadOnly = true;
+            this.Excluir.Text = "Excluir";
+            this.Excluir.ToolTipText = "Excluir";
+            this.Excluir.UseColumnTextForLinkValue = true;
+            this.Excluir.VisitedLinkColor = System.Drawing.Color.Blue;
+            // 
             // btnPesquisar
             // 
             this.btnPesquisar.Location = new System.Drawing.Point(547, 26);
@@ -138,73 +205,6 @@
             this.tbnCancelar.UseVisualStyleBackColor = true;
             this.tbnCancelar.Click += new System.EventHandler(this.tbnCancelar_Click);
             // 
-            // Excluir
-            // 
-            this.Excluir.HeaderText = "Excluir";
-            this.Excluir.Name = "Excluir";
-            this.Excluir.ReadOnly = true;
-            this.Excluir.Text = "Excluir";
-            this.Excluir.ToolTipText = "Excluir";
-            this.Excluir.UseColumnTextForLinkValue = true;
-            this.Excluir.VisitedLinkColor = System.Drawing.Color.Blue;
-            // 
-            // Editar
-            // 
-            this.Editar.HeaderText = "Editar";
-            this.Editar.Name = "Editar";
-            this.Editar.ReadOnly = true;
-            this.Editar.Text = "Editar";
-            this.Editar.ToolTipText = "Editar";
-            this.Editar.UseColumnTextForLinkValue = true;
-            this.Editar.VisitedLinkColor = System.Drawing.Color.Blue;
-            // 
-            // ConsultarProvas
-            // 
-            this.ConsultarProvas.HeaderText = "Consultar provas";
-            this.ConsultarProvas.Name = "ConsultarProvas";
-            this.ConsultarProvas.ReadOnly = true;
-            this.ConsultarProvas.Text = "Consultar provas";
-            this.ConsultarProvas.UseColumnTextForLinkValue = true;
-            this.ConsultarProvas.VisitedLinkColor = System.Drawing.Color.Blue;
-            // 
-            // ConsultarEncomendas
-            // 
-            this.ConsultarEncomendas.HeaderText = "Consultar encomendas";
-            this.ConsultarEncomendas.Name = "ConsultarEncomendas";
-            this.ConsultarEncomendas.ReadOnly = true;
-            this.ConsultarEncomendas.Text = "Consultar encomendas";
-            this.ConsultarEncomendas.UseColumnTextForLinkValue = true;
-            this.ConsultarEncomendas.VisitedLinkColor = System.Drawing.Color.Blue;
-            // 
-            // Telefone
-            // 
-            this.Telefone.DataPropertyName = "Telefone";
-            this.Telefone.HeaderText = "Telefone";
-            this.Telefone.Name = "Telefone";
-            this.Telefone.ReadOnly = true;
-            // 
-            // CPF
-            // 
-            this.CPF.DataPropertyName = "CPF";
-            this.CPF.HeaderText = "CPF";
-            this.CPF.Name = "CPF";
-            this.CPF.ReadOnly = true;
-            // 
-            // Nome
-            // 
-            this.Nome.DataPropertyName = "Nome";
-            this.Nome.HeaderText = "Nome";
-            this.Nome.Name = "Nome";
-            this.Nome.ReadOnly = true;
-            // 
-            // Id
-            // 
-            this.Id.DataPropertyName = "Id";
-            this.Id.HeaderText = "Id";
-            this.Id.Name = "Id";
-            this.Id.ReadOnly = true;
-            this.Id.Visible = false;
-            // 
             // FormClienteConsulta
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -221,6 +221,7 @@
             this.Controls.Add(this.label1);
             this.Name = "FormClienteConsulta";
             this.Text = "FormClienteConsulta";
+            this.Load += new System.EventHandler(this.FormClienteConsulta_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvCliente)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
