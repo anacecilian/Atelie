@@ -30,12 +30,14 @@
         {
             this.label1 = new System.Windows.Forms.Label();
             this.txtNome = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtCPF = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.txtTelefone = new System.Windows.Forms.TextBox();
             this.dgvCliente = new System.Windows.Forms.DataGridView();
             this.btnPesquisar = new System.Windows.Forms.Button();
+            this.tbnCancelar = new System.Windows.Forms.Button();
+            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Nome = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CPF = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Telefone = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -62,12 +64,12 @@
             this.txtNome.Size = new System.Drawing.Size(267, 20);
             this.txtNome.TabIndex = 1;
             // 
-            // textBox1
+            // txtCPF
             // 
-            this.textBox1.Location = new System.Drawing.Point(415, 29);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 20);
-            this.textBox1.TabIndex = 2;
+            this.txtCPF.Location = new System.Drawing.Point(415, 29);
+            this.txtCPF.Name = "txtCPF";
+            this.txtCPF.Size = new System.Drawing.Size(100, 20);
+            this.txtCPF.TabIndex = 2;
             // 
             // label2
             // 
@@ -87,19 +89,21 @@
             this.label3.TabIndex = 4;
             this.label3.Text = "Telefone";
             // 
-            // textBox2
+            // txtTelefone
             // 
-            this.textBox2.Location = new System.Drawing.Point(299, 30);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(100, 20);
-            this.textBox2.TabIndex = 5;
+            this.txtTelefone.Location = new System.Drawing.Point(299, 30);
+            this.txtTelefone.Name = "txtTelefone";
+            this.txtTelefone.Size = new System.Drawing.Size(100, 20);
+            this.txtTelefone.TabIndex = 5;
             // 
             // dgvCliente
             // 
             this.dgvCliente.AllowUserToAddRows = false;
             this.dgvCliente.AllowUserToDeleteRows = false;
+            this.dgvCliente.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvCliente.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvCliente.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Id,
             this.Nome,
             this.CPF,
             this.Telefone,
@@ -123,6 +127,24 @@
             this.btnPesquisar.Text = "Pesquisar";
             this.btnPesquisar.UseVisualStyleBackColor = true;
             this.btnPesquisar.Click += new System.EventHandler(this.btnPesquisar_Click);
+            // 
+            // tbnCancelar
+            // 
+            this.tbnCancelar.Location = new System.Drawing.Point(576, 447);
+            this.tbnCancelar.Name = "tbnCancelar";
+            this.tbnCancelar.Size = new System.Drawing.Size(75, 23);
+            this.tbnCancelar.TabIndex = 8;
+            this.tbnCancelar.Text = "Cancelar";
+            this.tbnCancelar.UseVisualStyleBackColor = true;
+            this.tbnCancelar.Click += new System.EventHandler(this.tbnCancelar_Click);
+            // 
+            // Id
+            // 
+            this.Id.DataPropertyName = "Id";
+            this.Id.HeaderText = "Id";
+            this.Id.Name = "Id";
+            this.Id.ReadOnly = true;
+            this.Id.Visible = false;
             // 
             // Nome
             // 
@@ -185,13 +207,14 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(667, 450);
+            this.ClientSize = new System.Drawing.Size(667, 482);
+            this.Controls.Add(this.tbnCancelar);
             this.Controls.Add(this.btnPesquisar);
             this.Controls.Add(this.dgvCliente);
-            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.txtTelefone);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.txtCPF);
             this.Controls.Add(this.txtNome);
             this.Controls.Add(this.label1);
             this.Name = "FormClienteConsulta";
@@ -206,12 +229,14 @@
 
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtNome;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtCPF;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox txtTelefone;
         private System.Windows.Forms.DataGridView dgvCliente;
         private System.Windows.Forms.Button btnPesquisar;
+        private System.Windows.Forms.Button tbnCancelar;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Id;
         private System.Windows.Forms.DataGridViewTextBoxColumn Nome;
         private System.Windows.Forms.DataGridViewTextBoxColumn CPF;
         private System.Windows.Forms.DataGridViewTextBoxColumn Telefone;

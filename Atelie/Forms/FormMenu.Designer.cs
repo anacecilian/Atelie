@@ -29,11 +29,11 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.btnCadastrarCliente = new System.Windows.Forms.Button();
             this.btnConsultarCliente = new System.Windows.Forms.Button();
+            this.btnCadastrarCliente = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.btnCadastrarEncomenda = new System.Windows.Forms.Button();
             this.btnConsultarEncomenda = new System.Windows.Forms.Button();
+            this.btnCadastrarEncomenda = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -49,15 +49,6 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Cliente";
             // 
-            // btnCadastrarCliente
-            // 
-            this.btnCadastrarCliente.Location = new System.Drawing.Point(7, 20);
-            this.btnCadastrarCliente.Name = "btnCadastrarCliente";
-            this.btnCadastrarCliente.Size = new System.Drawing.Size(75, 23);
-            this.btnCadastrarCliente.TabIndex = 0;
-            this.btnCadastrarCliente.Text = "Cadastrar";
-            this.btnCadastrarCliente.UseVisualStyleBackColor = true;
-            // 
             // btnConsultarCliente
             // 
             this.btnConsultarCliente.Location = new System.Drawing.Point(7, 50);
@@ -66,6 +57,17 @@
             this.btnConsultarCliente.TabIndex = 1;
             this.btnConsultarCliente.Text = "Consultar";
             this.btnConsultarCliente.UseVisualStyleBackColor = true;
+            this.btnConsultarCliente.Click += new System.EventHandler(this.btnConsultarCliente_Click);
+            // 
+            // btnCadastrarCliente
+            // 
+            this.btnCadastrarCliente.Location = new System.Drawing.Point(7, 20);
+            this.btnCadastrarCliente.Name = "btnCadastrarCliente";
+            this.btnCadastrarCliente.Size = new System.Drawing.Size(75, 23);
+            this.btnCadastrarCliente.TabIndex = 0;
+            this.btnCadastrarCliente.Text = "Cadastrar";
+            this.btnCadastrarCliente.UseVisualStyleBackColor = true;
+            this.btnCadastrarCliente.Click += new System.EventHandler(this.btnCadastrarCliente_Click);
             // 
             // groupBox2
             // 
@@ -78,15 +80,6 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Encomenda";
             // 
-            // btnCadastrarEncomenda
-            // 
-            this.btnCadastrarEncomenda.Location = new System.Drawing.Point(7, 20);
-            this.btnCadastrarEncomenda.Name = "btnCadastrarEncomenda";
-            this.btnCadastrarEncomenda.Size = new System.Drawing.Size(75, 23);
-            this.btnCadastrarEncomenda.TabIndex = 0;
-            this.btnCadastrarEncomenda.Text = "Cadastrar";
-            this.btnCadastrarEncomenda.UseVisualStyleBackColor = true;
-            // 
             // btnConsultarEncomenda
             // 
             this.btnConsultarEncomenda.Location = new System.Drawing.Point(7, 50);
@@ -95,6 +88,17 @@
             this.btnConsultarEncomenda.TabIndex = 1;
             this.btnConsultarEncomenda.Text = "Consultar";
             this.btnConsultarEncomenda.UseVisualStyleBackColor = true;
+            this.btnConsultarEncomenda.Click += new System.EventHandler(this.btnConsultarEncomenda_Click);
+            // 
+            // btnCadastrarEncomenda
+            // 
+            this.btnCadastrarEncomenda.Location = new System.Drawing.Point(7, 20);
+            this.btnCadastrarEncomenda.Name = "btnCadastrarEncomenda";
+            this.btnCadastrarEncomenda.Size = new System.Drawing.Size(75, 23);
+            this.btnCadastrarEncomenda.TabIndex = 0;
+            this.btnCadastrarEncomenda.Text = "Cadastrar";
+            this.btnCadastrarEncomenda.UseVisualStyleBackColor = true;
+            this.btnCadastrarEncomenda.Click += new System.EventHandler(this.btnCadastrarEncomenda_Click);
             // 
             // FormMenu
             // 

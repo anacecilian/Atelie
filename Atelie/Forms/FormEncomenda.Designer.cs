@@ -29,11 +29,9 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.txtDetalhes = new System.Windows.Forms.TextBox();
+            this.txtDescricao = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.txtDataPagamento = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.txtDataEntregaEfet = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.txtPreco = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -44,12 +42,8 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.txtUnidadeMedida = new System.Windows.Forms.TextBox();
             this.dgvMaterial = new System.Windows.Forms.DataGridView();
-            this.Descricao = new System.Windows.Forms.DataGridViewLinkColumn();
-            this.Quantidade = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.UnidadeMedida = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Excluir = new System.Windows.Forms.DataGridViewButtonColumn();
             this.btnSalvarMaterial = new System.Windows.Forms.Button();
-            this.txtDescricao = new System.Windows.Forms.TextBox();
+            this.txtDetalhes = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.txtQuantidade = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
@@ -66,6 +60,14 @@
             this.label11 = new System.Windows.Forms.Label();
             this.dtpDataProva = new System.Windows.Forms.DateTimePicker();
             this.label10 = new System.Windows.Forms.Label();
+            this.dtpDataEntregaEfet = new System.Windows.Forms.DateTimePicker();
+            this.dtpDataPagamento = new System.Windows.Forms.DateTimePicker();
+            this.IdMaterial = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Descricao = new System.Windows.Forms.DataGridViewLinkColumn();
+            this.Quantidade = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.UnidadeMedida = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Excluir = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.IdProva = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Data = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Cancelar = new System.Windows.Forms.DataGridViewButtonColumn();
             this.groupBox1.SuspendLayout();
@@ -77,11 +79,11 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.txtDetalhes);
+            this.groupBox1.Controls.Add(this.dtpDataPagamento);
+            this.groupBox1.Controls.Add(this.dtpDataEntregaEfet);
+            this.groupBox1.Controls.Add(this.txtDescricao);
             this.groupBox1.Controls.Add(this.label6);
-            this.groupBox1.Controls.Add(this.txtDataPagamento);
             this.groupBox1.Controls.Add(this.label5);
-            this.groupBox1.Controls.Add(this.txtDataEntregaEfet);
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.txtPreco);
             this.groupBox1.Controls.Add(this.label3);
@@ -96,30 +98,22 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Dados da encomenda";
             // 
-            // txtDetalhes
+            // txtDescricao
             // 
-            this.txtDetalhes.Location = new System.Drawing.Point(372, 37);
-            this.txtDetalhes.Multiline = true;
-            this.txtDetalhes.Name = "txtDetalhes";
-            this.txtDetalhes.Size = new System.Drawing.Size(344, 108);
-            this.txtDetalhes.TabIndex = 11;
+            this.txtDescricao.Location = new System.Drawing.Point(372, 37);
+            this.txtDescricao.Multiline = true;
+            this.txtDescricao.Name = "txtDescricao";
+            this.txtDescricao.Size = new System.Drawing.Size(344, 108);
+            this.txtDescricao.TabIndex = 11;
             // 
             // label6
             // 
             this.label6.AutoSize = true;
             this.label6.Location = new System.Drawing.Point(369, 20);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(49, 13);
+            this.label6.Size = new System.Drawing.Size(55, 13);
             this.label6.TabIndex = 10;
-            this.label6.Text = "Detalhes";
-            // 
-            // txtDataPagamento
-            // 
-            this.txtDataPagamento.Location = new System.Drawing.Point(160, 125);
-            this.txtDataPagamento.Name = "txtDataPagamento";
-            this.txtDataPagamento.ReadOnly = true;
-            this.txtDataPagamento.Size = new System.Drawing.Size(119, 20);
-            this.txtDataPagamento.TabIndex = 9;
+            this.label6.Text = "Descricao";
             // 
             // label5
             // 
@@ -129,14 +123,6 @@
             this.label5.Size = new System.Drawing.Size(101, 13);
             this.label5.TabIndex = 8;
             this.label5.Text = "Data do pagamento";
-            // 
-            // txtDataEntregaEfet
-            // 
-            this.txtDataEntregaEfet.Location = new System.Drawing.Point(13, 126);
-            this.txtDataEntregaEfet.Name = "txtDataEntregaEfet";
-            this.txtDataEntregaEfet.ReadOnly = true;
-            this.txtDataEntregaEfet.Size = new System.Drawing.Size(119, 20);
-            this.txtDataEntregaEfet.TabIndex = 7;
             // 
             // label4
             // 
@@ -206,7 +192,7 @@
             this.groupBox2.Controls.Add(this.txtUnidadeMedida);
             this.groupBox2.Controls.Add(this.dgvMaterial);
             this.groupBox2.Controls.Add(this.btnSalvarMaterial);
-            this.groupBox2.Controls.Add(this.txtDescricao);
+            this.groupBox2.Controls.Add(this.txtDetalhes);
             this.groupBox2.Controls.Add(this.label9);
             this.groupBox2.Controls.Add(this.txtQuantidade);
             this.groupBox2.Controls.Add(this.label8);
@@ -232,6 +218,7 @@
             this.dgvMaterial.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvMaterial.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvMaterial.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.IdMaterial,
             this.Descricao,
             this.Quantidade,
             this.UnidadeMedida,
@@ -243,42 +230,6 @@
             this.dgvMaterial.TabIndex = 7;
             this.dgvMaterial.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvMaterial_CellClick);
             // 
-            // Descricao
-            // 
-            this.Descricao.DataPropertyName = "Descricao";
-            this.Descricao.HeaderText = "Descrição";
-            this.Descricao.Name = "Descricao";
-            this.Descricao.ReadOnly = true;
-            this.Descricao.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.Descricao.VisitedLinkColor = System.Drawing.Color.Blue;
-            // 
-            // Quantidade
-            // 
-            this.Quantidade.DataPropertyName = "Quantidade";
-            this.Quantidade.HeaderText = "Quantidade";
-            this.Quantidade.Name = "Quantidade";
-            this.Quantidade.ReadOnly = true;
-            this.Quantidade.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // UnidadeMedida
-            // 
-            this.UnidadeMedida.DataPropertyName = "UnidadeMedida";
-            this.UnidadeMedida.HeaderText = "Unidade de medida";
-            this.UnidadeMedida.Name = "UnidadeMedida";
-            this.UnidadeMedida.ReadOnly = true;
-            this.UnidadeMedida.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // Excluir
-            // 
-            this.Excluir.DataPropertyName = "Excluir";
-            this.Excluir.HeaderText = "Excluir";
-            this.Excluir.Name = "Excluir";
-            this.Excluir.ReadOnly = true;
-            this.Excluir.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.Excluir.Text = "Excluir";
-            this.Excluir.ToolTipText = "Excluir";
-            this.Excluir.UseColumnTextForButtonValue = true;
-            // 
             // btnSalvarMaterial
             // 
             this.btnSalvarMaterial.Location = new System.Drawing.Point(604, 74);
@@ -289,22 +240,22 @@
             this.btnSalvarMaterial.UseVisualStyleBackColor = true;
             this.btnSalvarMaterial.Click += new System.EventHandler(this.btnSalvarMaterial_Click);
             // 
-            // txtDescricao
+            // txtDetalhes
             // 
-            this.txtDescricao.Location = new System.Drawing.Point(227, 37);
-            this.txtDescricao.Multiline = true;
-            this.txtDescricao.Name = "txtDescricao";
-            this.txtDescricao.Size = new System.Drawing.Size(371, 60);
-            this.txtDescricao.TabIndex = 5;
+            this.txtDetalhes.Location = new System.Drawing.Point(227, 37);
+            this.txtDetalhes.Multiline = true;
+            this.txtDetalhes.Name = "txtDetalhes";
+            this.txtDetalhes.Size = new System.Drawing.Size(371, 60);
+            this.txtDetalhes.TabIndex = 5;
             // 
             // label9
             // 
             this.label9.AutoSize = true;
             this.label9.Location = new System.Drawing.Point(224, 20);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(55, 13);
+            this.label9.Size = new System.Drawing.Size(49, 13);
             this.label9.TabIndex = 4;
-            this.label9.Text = "Descrição";
+            this.label9.Text = "Detalhes";
             // 
             // txtQuantidade
             // 
@@ -349,6 +300,7 @@
             this.btnCancelar.TabIndex = 3;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
             // groupBox3
             // 
@@ -402,6 +354,7 @@
             this.dgvProva.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvProva.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvProva.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.IdProva,
             this.Data,
             this.Cancelar});
             this.dgvProva.Location = new System.Drawing.Point(10, 65);
@@ -455,6 +408,74 @@
             this.label10.TabIndex = 0;
             this.label10.Text = "Data";
             // 
+            // dtpDataEntregaEfet
+            // 
+            this.dtpDataEntregaEfet.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpDataEntregaEfet.Location = new System.Drawing.Point(13, 125);
+            this.dtpDataEntregaEfet.Name = "dtpDataEntregaEfet";
+            this.dtpDataEntregaEfet.Size = new System.Drawing.Size(119, 20);
+            this.dtpDataEntregaEfet.TabIndex = 12;
+            // 
+            // dtpDataPagamento
+            // 
+            this.dtpDataPagamento.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpDataPagamento.Location = new System.Drawing.Point(160, 124);
+            this.dtpDataPagamento.Name = "dtpDataPagamento";
+            this.dtpDataPagamento.Size = new System.Drawing.Size(121, 20);
+            this.dtpDataPagamento.TabIndex = 13;
+            // 
+            // IdMaterial
+            // 
+            this.IdMaterial.DataPropertyName = "Id";
+            this.IdMaterial.HeaderText = "Id";
+            this.IdMaterial.Name = "IdMaterial";
+            this.IdMaterial.ReadOnly = true;
+            this.IdMaterial.Visible = false;
+            // 
+            // Descricao
+            // 
+            this.Descricao.DataPropertyName = "Descricao";
+            this.Descricao.HeaderText = "Descrição";
+            this.Descricao.Name = "Descricao";
+            this.Descricao.ReadOnly = true;
+            this.Descricao.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.Descricao.VisitedLinkColor = System.Drawing.Color.Blue;
+            // 
+            // Quantidade
+            // 
+            this.Quantidade.DataPropertyName = "Quantidade";
+            this.Quantidade.HeaderText = "Quantidade";
+            this.Quantidade.Name = "Quantidade";
+            this.Quantidade.ReadOnly = true;
+            this.Quantidade.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // UnidadeMedida
+            // 
+            this.UnidadeMedida.DataPropertyName = "UnidadeMedida";
+            this.UnidadeMedida.HeaderText = "Unidade de medida";
+            this.UnidadeMedida.Name = "UnidadeMedida";
+            this.UnidadeMedida.ReadOnly = true;
+            this.UnidadeMedida.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // Excluir
+            // 
+            this.Excluir.DataPropertyName = "Excluir";
+            this.Excluir.HeaderText = "Excluir";
+            this.Excluir.Name = "Excluir";
+            this.Excluir.ReadOnly = true;
+            this.Excluir.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.Excluir.Text = "Excluir";
+            this.Excluir.ToolTipText = "Excluir";
+            this.Excluir.UseColumnTextForButtonValue = true;
+            // 
+            // IdProva
+            // 
+            this.IdProva.DataPropertyName = "Id";
+            this.IdProva.HeaderText = "Id";
+            this.IdProva.Name = "IdProva";
+            this.IdProva.ReadOnly = true;
+            this.IdProva.Visible = false;
+            // 
             // Data
             // 
             this.Data.DataPropertyName = "Data";
@@ -500,18 +521,16 @@
         private System.Windows.Forms.DateTimePicker dtpDataEntregaPrev;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox txtDataPagamento;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox txtDataEntregaEfet;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox txtPreco;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox txtDetalhes;
+        private System.Windows.Forms.TextBox txtDescricao;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Button btnSalvarMaterial;
-        private System.Windows.Forms.TextBox txtDescricao;
+        private System.Windows.Forms.TextBox txtDetalhes;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.TextBox txtQuantidade;
         private System.Windows.Forms.Label label8;
@@ -520,10 +539,6 @@
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.TextBox txtUnidadeMedida;
         private System.Windows.Forms.ComboBox cmbCliente;
-        private System.Windows.Forms.DataGridViewLinkColumn Descricao;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Quantidade;
-        private System.Windows.Forms.DataGridViewTextBoxColumn UnidadeMedida;
-        private System.Windows.Forms.DataGridViewButtonColumn Excluir;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.DateTimePicker dtpHoraProva;
         private System.Windows.Forms.Label label11;
@@ -534,6 +549,14 @@
         private System.Windows.Forms.Button btnSalvarAnotacao;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.TextBox txtAnotacaoProva;
+        private System.Windows.Forms.DateTimePicker dtpDataPagamento;
+        private System.Windows.Forms.DateTimePicker dtpDataEntregaEfet;
+        private System.Windows.Forms.DataGridViewTextBoxColumn IdMaterial;
+        private System.Windows.Forms.DataGridViewLinkColumn Descricao;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Quantidade;
+        private System.Windows.Forms.DataGridViewTextBoxColumn UnidadeMedida;
+        private System.Windows.Forms.DataGridViewButtonColumn Excluir;
+        private System.Windows.Forms.DataGridViewTextBoxColumn IdProva;
         private System.Windows.Forms.DataGridViewTextBoxColumn Data;
         private System.Windows.Forms.DataGridViewButtonColumn Cancelar;
     }

@@ -40,6 +40,8 @@
             this.DataEntregaPrev = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Descricao = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Editar = new System.Windows.Forms.DataGridViewLinkColumn();
+            this.Excluir = new System.Windows.Forms.DataGridViewLinkColumn();
+            this.btnCancelar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvEncomenda)).BeginInit();
             this.SuspendLayout();
             // 
@@ -91,7 +93,8 @@
             this.NomeCliente,
             this.DataEntregaPrev,
             this.Descricao,
-            this.Editar});
+            this.Editar,
+            this.Excluir});
             this.dgvEncomenda.Location = new System.Drawing.Point(16, 58);
             this.dgvEncomenda.Name = "dgvEncomenda";
             this.dgvEncomenda.ReadOnly = true;
@@ -156,11 +159,30 @@
             this.Editar.UseColumnTextForLinkValue = true;
             this.Editar.VisitedLinkColor = System.Drawing.Color.Blue;
             // 
+            // Excluir
+            // 
+            this.Excluir.HeaderText = "Excluir";
+            this.Excluir.Name = "Excluir";
+            this.Excluir.ReadOnly = true;
+            this.Excluir.UseColumnTextForLinkValue = true;
+            this.Excluir.VisitedLinkColor = System.Drawing.Color.Blue;
+            // 
+            // btnCancelar
+            // 
+            this.btnCancelar.Location = new System.Drawing.Point(494, 447);
+            this.btnCancelar.Name = "btnCancelar";
+            this.btnCancelar.Size = new System.Drawing.Size(75, 23);
+            this.btnCancelar.TabIndex = 6;
+            this.btnCancelar.Text = "Cancelar";
+            this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
+            // 
             // FormEncomendaConsulta
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(585, 450);
+            this.ClientSize = new System.Drawing.Size(585, 482);
+            this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnPesquisar);
             this.Controls.Add(this.dgvEncomenda);
             this.Controls.Add(this.dtpDataEntrega);
@@ -189,5 +211,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn DataEntregaPrev;
         private System.Windows.Forms.DataGridViewTextBoxColumn Descricao;
         private System.Windows.Forms.DataGridViewLinkColumn Editar;
+        private System.Windows.Forms.DataGridViewLinkColumn Excluir;
+        private System.Windows.Forms.Button btnCancelar;
     }
 }

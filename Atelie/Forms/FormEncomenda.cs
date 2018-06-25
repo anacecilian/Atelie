@@ -1,4 +1,5 @@
 ﻿using Atelie.Entidades;
+using Atelie.Servico;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -22,18 +23,43 @@ namespace Atelie.Forms
         public int indexItemMaterialEditando { get; set; } = -1;
         public int indexItemProvaEditando { get; set; } = -1;
         public Encomenda encomenda { get; set; }
+        public Cliente cliente { get; set; }
+
+        EncomendaServico encomendaServico;
+        ClienteServico clienteServico;
 
         public FormEncomenda(int EncomendaId = 0, int ClienteId = 0)
         {
             InitializeComponent();
+            encomendaServico = new EncomendaServico();
+            clienteServico = new ClienteServico();
 
             List<Cliente> clientes = new List<Cliente>();
             cmbCliente.DataSource = clientes;
 
             if (EncomendaId > 0)
             {
-                //TODO
+                encomenda = encomendaServico.RetornaEncomenda(ClienteId, EncomendaId);
+                cliente = clienteServico.RetornaCliente(ClienteId);
+                CarregarDadosEncomenda();
             }
+        }
+
+        private void CarregarDadosEncomenda()
+        {
+            cmbCliente.SelectedText = cliente.Nome;
+            cmbCliente.Enabled = false;
+
+            dtpDataEntregaPrev.Text = encomenda.DataEntregaPrevista.ToShortDateString();
+            txtDescricao.Text = encomenda.Descricao;
+            dtpDataEntregaEfet.Text = encomenda.DataEntregaEfetiva.ToShortDateString();
+            dtpDataPagamento.Text = encomenda.DataPagamento.ToShortDateString();
+
+            Materiais = encomenda.Materiais;
+            AtualizarGridMateriais();
+
+            Provas = encomenda.Provas;
+            AtualizarGridProvas();
         }
 
         private void btnSalvarMaterial_Click(object sender, EventArgs e)
@@ -41,7 +67,7 @@ namespace Atelie.Forms
             decimal quantidade = 0.0M;
             Decimal.TryParse(txtQuantidade.Text, out quantidade);
 
-            if (String.IsNullOrEmpty(txtDescricao.Text))
+            if (String.IsNullOrEmpty(txtDetalhes.Text))
                 MessageBox.Show("Digite a descrição.", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             else if (String.IsNullOrEmpty(txtUnidadeMedida.Text))
                 MessageBox.Show("Digite a unidade de medida.", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -51,7 +77,7 @@ namespace Atelie.Forms
             {
                 Materiais.Add(new EncomendaMaterial
                 {
-                    Descricao = txtDescricao.Text
+                    Detalhes = txtDetalhes.Text
                     ,
                     Quantidade = quantidade
                     ,
@@ -60,7 +86,7 @@ namespace Atelie.Forms
             }
             else
             {
-                Materiais.ElementAt(indexItemMaterialEditando).Descricao = txtDescricao.Text;
+                Materiais.ElementAt(indexItemMaterialEditando).Detalhes = txtDetalhes.Text;
                 Materiais.ElementAt(indexItemMaterialEditando).Quantidade = quantidade;
                 Materiais.ElementAt(indexItemMaterialEditando).UnidadeMedida = txtUnidadeMedida.Text;
                 indexItemMaterialEditando = -1;
@@ -72,7 +98,7 @@ namespace Atelie.Forms
 
         private void LimparFormMaterial()
         {
-            txtQuantidade.Text = txtUnidadeMedida.Text = txtDescricao.Text = string.Empty;
+            txtQuantidade.Text = txtUnidadeMedida.Text = txtDetalhes.Text = string.Empty;
         }
 
         private void dgvMaterial_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -86,7 +112,7 @@ namespace Atelie.Forms
             {
                 EncomendaMaterial material = Materiais.ElementAt(e.RowIndex);
 
-                txtDescricao.Text = material.Descricao;
+                txtDetalhes.Text = material.Detalhes;
                 txtQuantidade.Text = material.Quantidade.ToString();
                 txtUnidadeMedida.Text = material.UnidadeMedida;
 
@@ -96,7 +122,7 @@ namespace Atelie.Forms
 
         private void AtualizarGridMateriais()
         {
-            dgvMaterial.DataSource = (from m in Materiais select new { Quantidade = m.Quantidade, UnidadeMedida = m.UnidadeMedida, Descricao = m.Descricao }).ToList();
+            dgvMaterial.DataSource = (from m in Materiais select new { Quantidade = m.Quantidade, UnidadeMedida = m.UnidadeMedida, Descricao = m.Detalhes, Id = m.Id }).ToList();
 
             if (Materiais.Any())
             {
@@ -112,6 +138,8 @@ namespace Atelie.Forms
             int ClienteId = 0;
             decimal preco = 0.0M;
             DateTime dataEntrega = DateTime.MinValue;
+            DateTime dataPagamento = DateTime.MinValue;
+            DateTime dataEntregaEfet = DateTime.MinValue;
 
             Int32.TryParse(cmbCliente.SelectedValue.ToString(), out ClienteId);
             Decimal.TryParse(txtPreco.Text, out preco);
@@ -123,6 +151,17 @@ namespace Atelie.Forms
                 MessageBox.Show("Preço inválido.", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             else if (dataEntrega == DateTime.MinValue)
                 MessageBox.Show("Data de entrega prevista inválida.", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            else if (!String.IsNullOrEmpty(dtpDataPagamento.Text)){
+                DateTime.TryParse(dtpDataPagamento.Text, out dataPagamento);
+                if (dataPagamento == DateTime.MinValue)
+                    MessageBox.Show("Data de entrega prevista inválida.", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            else if (!String.IsNullOrEmpty(dtpDataEntregaEfet.Text))
+            {
+                DateTime.TryParse(dtpDataEntregaEfet.Text, out dataEntregaEfet);
+                if (dataEntrega == DateTime.MinValue)
+                    MessageBox.Show("Data de entrega prevista inválida.", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
             else
             {
                 encomenda.ClienteId = ClienteId;
@@ -130,8 +169,17 @@ namespace Atelie.Forms
                 encomenda.Materiais = Materiais;
                 encomenda.Preco = preco;
                 encomenda.Provas = Provas;
+                encomenda.DataEntregaEfetiva = dataEntregaEfet;
+                encomenda.DataPagamento = dataPagamento;
 
-                //TODO
+                if (encomendaServico.Salvar(encomenda))
+                {
+                    MessageBox.Show("Encomenda salva com sucesso.", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show("Não foi possível salvar a encomenda.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
 
@@ -158,7 +206,7 @@ namespace Atelie.Forms
 
         private void AtualizarGridProvas()
         {
-            dgvProva.DataSource = (from m in Provas select new { Data = m.Data }).ToList();
+            dgvProva.DataSource = (from p in Provas select new { Data = p.Data, Id = p.Id }).ToList();
 
             if (Provas.Any())
             {
@@ -186,6 +234,11 @@ namespace Atelie.Forms
             Provas.ElementAt(indexItemProvaEditando).Anotacao = txtAnotacaoProva.Text;
             indexItemProvaEditando = -1;
             txtAnotacaoProva.Text = string.Empty;
+        }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

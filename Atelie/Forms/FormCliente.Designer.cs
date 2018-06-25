@@ -47,6 +47,8 @@
             this.lblLogradouro = new System.Windows.Forms.Label();
             this.gbxMedidas = new System.Windows.Forms.GroupBox();
             this.dgvMedidas = new System.Windows.Forms.DataGridView();
+            this.colTipo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colMedida = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnAdiconarMedida = new System.Windows.Forms.Button();
             this.txtMedida = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -57,8 +59,8 @@
             this.Tipo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Medida = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Excluir = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.colTipo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colMedida = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.label3 = new System.Windows.Forms.Label();
+            this.txtCPF = new System.Windows.Forms.TextBox();
             this.gbxDadosPessoais.SuspendLayout();
             this.gbxEndereco.SuspendLayout();
             this.gbxMedidas.SuspendLayout();
@@ -67,6 +69,8 @@
             // 
             // gbxDadosPessoais
             // 
+            this.gbxDadosPessoais.Controls.Add(this.txtCPF);
+            this.gbxDadosPessoais.Controls.Add(this.label3);
             this.gbxDadosPessoais.Controls.Add(this.txtNumeroTel);
             this.gbxDadosPessoais.Controls.Add(this.txtNome);
             this.gbxDadosPessoais.Controls.Add(this.lblTelefone);
@@ -80,7 +84,7 @@
             // 
             // txtNumeroTel
             // 
-            this.txtNumeroTel.Location = new System.Drawing.Point(10, 75);
+            this.txtNumeroTel.Location = new System.Drawing.Point(131, 75);
             this.txtNumeroTel.Name = "txtNumeroTel";
             this.txtNumeroTel.Size = new System.Drawing.Size(100, 20);
             this.txtNumeroTel.TabIndex = 6;
@@ -95,7 +99,7 @@
             // lblTelefone
             // 
             this.lblTelefone.AutoSize = true;
-            this.lblTelefone.Location = new System.Drawing.Point(7, 59);
+            this.lblTelefone.Location = new System.Drawing.Point(128, 59);
             this.lblTelefone.Name = "lblTelefone";
             this.lblTelefone.Size = new System.Drawing.Size(49, 13);
             this.lblTelefone.TabIndex = 1;
@@ -252,6 +256,20 @@
             this.dgvMedidas.Size = new System.Drawing.Size(495, 150);
             this.dgvMedidas.TabIndex = 10;
             // 
+            // colTipo
+            // 
+            this.colTipo.DataPropertyName = "Tipo";
+            this.colTipo.HeaderText = "Tipo";
+            this.colTipo.Name = "colTipo";
+            this.colTipo.ReadOnly = true;
+            // 
+            // colMedida
+            // 
+            this.colMedida.DataPropertyName = "Valor";
+            this.colMedida.HeaderText = "Medida";
+            this.colMedida.Name = "colMedida";
+            this.colMedida.ReadOnly = true;
+            // 
             // btnAdiconarMedida
             // 
             this.btnAdiconarMedida.Location = new System.Drawing.Point(407, 16);
@@ -324,6 +342,7 @@
             this.btnCancelar.TabIndex = 4;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
             // Tipo
             // 
@@ -342,19 +361,21 @@
             this.Excluir.HeaderText = "Excluir";
             this.Excluir.Name = "Excluir";
             // 
-            // colTipo
+            // label3
             // 
-            this.colTipo.DataPropertyName = "Tipo";
-            this.colTipo.HeaderText = "Tipo";
-            this.colTipo.Name = "colTipo";
-            this.colTipo.ReadOnly = true;
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(7, 59);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(27, 13);
+            this.label3.TabIndex = 7;
+            this.label3.Text = "CPF";
             // 
-            // colMedida
+            // txtCPF
             // 
-            this.colMedida.DataPropertyName = "Valor";
-            this.colMedida.HeaderText = "Medida";
-            this.colMedida.Name = "colMedida";
-            this.colMedida.ReadOnly = true;
+            this.txtCPF.Location = new System.Drawing.Point(10, 75);
+            this.txtCPF.Name = "txtCPF";
+            this.txtCPF.Size = new System.Drawing.Size(112, 20);
+            this.txtCPF.TabIndex = 8;
             // 
             // FormCliente
             // 
@@ -413,6 +434,8 @@
         private System.Windows.Forms.DataGridView dgvMedidas;
         private System.Windows.Forms.DataGridViewTextBoxColumn colTipo;
         private System.Windows.Forms.DataGridViewTextBoxColumn colMedida;
+        private System.Windows.Forms.TextBox txtCPF;
+        private System.Windows.Forms.Label label3;
     }
 }
 

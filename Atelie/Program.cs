@@ -16,7 +16,7 @@ namespace Atelie
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Forms.FormEncomendaConsulta());
+            Application.Run(new Forms.FormMenu());
         }
     }
 }

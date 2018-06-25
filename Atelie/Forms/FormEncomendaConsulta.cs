@@ -1,5 +1,5 @@
 ﻿using Atelie.Entidades;
-using Atelie.Modelos;
+using Atelie.Servico;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -20,11 +20,24 @@ namespace Atelie.Forms
 
         public FormEncomenda formEncomenda { get; set; } = new FormEncomenda();
 
-        public List<EncomendaClienteModelo> Encomendas { get; set; } = new List<EncomendaClienteModelo>();
+        EncomendaServico encomendaServico;
+        ClienteServico clienteServico;
 
-        public FormEncomendaConsulta()
+        public List<Encomenda> Encomendas { get; set; } = new List<Encomenda>();
+        public Cliente cliente { get; set; } = new Cliente();
+
+        public FormEncomendaConsulta(int ClienteId = 0)
         {
             InitializeComponent();
+            encomendaServico = new EncomendaServico();
+            clienteServico = new ClienteServico();
+
+            if (ClienteId > 0)
+            {
+                Pesquisar(ClienteId, DateTime.MinValue);
+                cliente = clienteServico.RetornaCliente(ClienteId);
+                AtualizarGridEncomendas();
+            }
         }
 
         private void dgvEncomenda_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -39,16 +52,33 @@ namespace Atelie.Forms
             }
         }
 
+        private void Pesquisar(int clienteId, DateTime dataEntrega)
+        {
+            Encomendas = encomendaServico.Pesquisa(clienteId, dataEntrega);
+            AtualizarGridEncomendas();
+        }
+
         private void btnPesquisar_Click(object sender, EventArgs e)
         {
             //TODO
-            Encomendas.Add(new EncomendaClienteModelo { NomeCliente = "Marcia", DataEntrega = DateTime.Now, Descricao = "xxxxxx" });
-            AtualizarGridEncomendas();
+
+            int ClienteId = 0;
+            DateTime dataEntrega = DateTime.MinValue;
+
+            Int32.TryParse(cmbCliente.SelectedValue.ToString(), out ClienteId);
+            DateTime.TryParse(dtpDataEntrega.Text, out dataEntrega);
+
+            Pesquisar(ClienteId, dataEntrega);
         }
 
         private void AtualizarGridEncomendas()
         {
-            dgvEncomenda.DataSource = (from e in Encomendas select new { NomeCliente = e.NomeCliente, DataEntrega = e.DataEntrega, Descricao = e.Descricao, EncomendaId = e.EncomendaId, ClienteId = e.ClienteId}).ToList();
+            dgvEncomenda.DataSource = (from e in Encomendas select new {
+                NomeCliente = cliente.Nome
+                , DataEntrega = e.DataEntregaPrevista
+                , Descricao = e.Descricao
+                , EncomendaId = e.Id
+                , ClienteId = cliente.Id}).ToList();
 
             if (Encomendas.Any())
             {
@@ -57,6 +87,11 @@ namespace Atelie.Forms
                 dgvEncomenda.Columns["Descricao"].DisplayIndex = 2;
                 dgvEncomenda.Columns["Editar"].DisplayIndex = 3;
             }
+        }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

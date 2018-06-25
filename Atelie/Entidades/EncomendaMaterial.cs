@@ -12,7 +12,7 @@ namespace Atelie.Entidades
         public int Id { get; set; }
         public int EncomendaId { get; set; }
         public string UnidadeMedida { get; set; }
-        public string Descricao { get; set; }
+        public string Detalhes { get; set; }
         public decimal Quantidade { get; set; }
     }
 }

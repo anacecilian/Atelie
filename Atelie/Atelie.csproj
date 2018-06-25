@@ -85,10 +85,22 @@
     <Compile Include="Forms\FormMenu.Designer.cs">
       <DependentUpon>FormMenu.cs</DependentUpon>
     </Compile>
-    <Compile Include="Modelos\EncomendaClienteModelo.cs" />
+    <Compile Include="Forms\FormProvaConsulta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormProvaConsulta.Designer.cs">
+      <DependentUpon>FormProvaConsulta.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modelo\ProvaModelo.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Servico\ClienteEnderecoServico.cs" />
     <Compile Include="Servico\ClienteServico.cs" />
+    <Compile Include="Servico\EncomendaServico.cs" />
+    <Compile Include="Servico\EnderecoServico.cs" />
+    <Compile Include="Servico\MaterialServico.cs" />
+    <Compile Include="Servico\MedidaServico.cs" />
+    <Compile Include="Servico\ProvaServico.cs" />
     <EmbeddedResource Include="Forms\FormCliente.resx">
       <DependentUpon>FormCliente.cs</DependentUpon>
     </EmbeddedResource>
@@ -103,6 +115,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormMenu.resx">
       <DependentUpon>FormMenu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormProvaConsulta.resx">
+      <DependentUpon>FormProvaConsulta.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

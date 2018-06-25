@@ -16,17 +16,38 @@ namespace Atelie
     public partial class FormCliente : Form
     {
         public List<ClienteMedida> Medidas { get; set; } = new List<ClienteMedida>();
-        public ClienteServico clienteServico = new ClienteServico();
+        public ClienteServico clienteServico;
         public Cliente cliente { get; set; }
+
+        EnderecoServico enderecoServico;
 
         public FormCliente(int clienteId = 0)
         {
             InitializeComponent();
+            clienteServico = new ClienteServico();
+            enderecoServico = new EnderecoServico();
+
             if (clienteId > 0)
             {
-                //TODO
-                AtualizarGridMedidas();
+                cliente = clienteServico.RetornaCliente(clienteId);
+                CarregarDadosCliente();
             }
+        }
+
+        private void CarregarDadosCliente()
+        {
+            txtNome.Text = cliente.Nome;
+            txtNumeroTel.Text = cliente.Telefone;
+            txtCPF.Text = cliente.CPF;
+
+            txtCEPNum.Text = cliente.ClienteEndereco.Endereco.CEP;
+            txtLogradouro.Text = cliente.ClienteEndereco.Endereco.Logradouro;
+            txtComplemento.Text = cliente.ClienteEndereco.Complemento;
+            txtNumeroEnd.Text = cliente.ClienteEndereco.Numero;
+            txtBairro.Text = cliente.ClienteEndereco.Endereco.Bairro;
+
+            Medidas = cliente.Medidas;
+            AtualizarGridMedidas();
         }
 
         private void FormCliente_Load(object sender, System.EventArgs e)
@@ -37,9 +58,7 @@ namespace Atelie
         private void btnPesquisarEnd_Click(object sender, EventArgs e)
         {
             string cep = txtCEPNum.Text;
-            //TODO
-            //método de pesquisar o endereço pelo cep
-            Endereco end = new Endereco();
+            Endereco end = enderecoServico.PesquisaPorCEP(cep);
             if (end.Id > 0)
             {
                 txtLogradouro.Text = end.Logradouro;
@@ -110,7 +129,7 @@ namespace Atelie
             if (clienteServico.SalvarCliente(cliente))
             {
                 MessageBox.Show("Cliente cadastrado com sucesso.", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                LimparCamposFormulario();
+                this.Close();
             }
             else
                 MessageBox.Show("Não foi possível salvar o cliente.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -162,6 +181,11 @@ namespace Atelie
         private void AtualizarGridMedidas()
         {
             dgvMedidas.DataSource = (from m in Medidas select new { Valor = m.Valor, Tipo = RetornaTextoTipoMedida(m.Tipo) }).ToList();
+        }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }
