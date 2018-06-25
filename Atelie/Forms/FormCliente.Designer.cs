@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.gbxDadosPessoais = new System.Windows.Forms.GroupBox();
+            this.txtCPF = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.txtNumeroTel = new System.Windows.Forms.TextBox();
             this.txtNome = new System.Windows.Forms.TextBox();
             this.lblTelefone = new System.Windows.Forms.Label();
@@ -59,8 +61,6 @@
             this.Tipo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Medida = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Excluir = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.label3 = new System.Windows.Forms.Label();
-            this.txtCPF = new System.Windows.Forms.TextBox();
             this.gbxDadosPessoais.SuspendLayout();
             this.gbxEndereco.SuspendLayout();
             this.gbxMedidas.SuspendLayout();
@@ -81,6 +81,23 @@
             this.gbxDadosPessoais.TabIndex = 0;
             this.gbxDadosPessoais.TabStop = false;
             this.gbxDadosPessoais.Text = "Dados pessoais";
+            this.gbxDadosPessoais.Enter += new System.EventHandler(this.gbxDadosPessoais_Enter);
+            // 
+            // txtCPF
+            // 
+            this.txtCPF.Location = new System.Drawing.Point(10, 75);
+            this.txtCPF.Name = "txtCPF";
+            this.txtCPF.Size = new System.Drawing.Size(112, 20);
+            this.txtCPF.TabIndex = 8;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(7, 59);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(27, 13);
+            this.label3.TabIndex = 7;
+            this.label3.Text = "CPF";
             // 
             // txtNumeroTel
             // 
@@ -360,22 +377,6 @@
             // 
             this.Excluir.HeaderText = "Excluir";
             this.Excluir.Name = "Excluir";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(7, 59);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(27, 13);
-            this.label3.TabIndex = 7;
-            this.label3.Text = "CPF";
-            // 
-            // txtCPF
-            // 
-            this.txtCPF.Location = new System.Drawing.Point(10, 75);
-            this.txtCPF.Name = "txtCPF";
-            this.txtCPF.Size = new System.Drawing.Size(112, 20);
-            this.txtCPF.TabIndex = 8;
             // 
             // FormCliente
             // 
