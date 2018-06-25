@@ -8,6 +8,10 @@ namespace Atelie.Entidades
 {
     public class ClienteEndereco
     {
+        public ClienteEndereco()
+        {
+            Endereco = new Endereco();
+        }
         public string Numero { get; set; }
         public string Complemento { get; set; }
         public Endereco Endereco { get; set; }

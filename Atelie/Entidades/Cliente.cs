@@ -8,6 +8,11 @@ namespace Atelie.Entidades
 {
     public class Cliente
     {
+        public Cliente()
+        {
+            Medidas = new List<ClienteMedida>();
+            ClienteEndereco = new ClienteEndereco();
+        }
         public int Id { get; set; }
         public string Nome { get; set; }
         public string Telefone { get; set; }

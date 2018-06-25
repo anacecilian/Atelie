@@ -62,14 +62,14 @@
             this.label10 = new System.Windows.Forms.Label();
             this.dtpDataEntregaEfet = new System.Windows.Forms.DateTimePicker();
             this.dtpDataPagamento = new System.Windows.Forms.DateTimePicker();
+            this.IdProva = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Data = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ExcluirProva = new System.Windows.Forms.DataGridViewButtonColumn();
             this.IdMaterial = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Descricao = new System.Windows.Forms.DataGridViewLinkColumn();
             this.Quantidade = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.UnidadeMedida = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Excluir = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.IdProva = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Data = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Cancelar = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.Excluir = new System.Windows.Forms.DataGridViewLinkColumn();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMaterial)).BeginInit();
@@ -356,7 +356,7 @@
             this.dgvProva.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.IdProva,
             this.Data,
-            this.Cancelar});
+            this.ExcluirProva});
             this.dgvProva.Location = new System.Drawing.Point(10, 65);
             this.dgvProva.Name = "dgvProva";
             this.dgvProva.ReadOnly = true;
@@ -424,6 +424,31 @@
             this.dtpDataPagamento.Size = new System.Drawing.Size(121, 20);
             this.dtpDataPagamento.TabIndex = 13;
             // 
+            // IdProva
+            // 
+            this.IdProva.DataPropertyName = "Id";
+            this.IdProva.HeaderText = "Id";
+            this.IdProva.Name = "IdProva";
+            this.IdProva.ReadOnly = true;
+            this.IdProva.Visible = false;
+            // 
+            // Data
+            // 
+            this.Data.DataPropertyName = "Data";
+            this.Data.HeaderText = "Data";
+            this.Data.Name = "Data";
+            this.Data.ReadOnly = true;
+            this.Data.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // ExcluirProva
+            // 
+            this.ExcluirProva.HeaderText = "Excluir";
+            this.ExcluirProva.Name = "ExcluirProva";
+            this.ExcluirProva.ReadOnly = true;
+            this.ExcluirProva.Text = "Excluir";
+            this.ExcluirProva.ToolTipText = "Excluir";
+            this.ExcluirProva.UseColumnTextForButtonValue = true;
+            // 
             // IdMaterial
             // 
             this.IdMaterial.DataPropertyName = "Id";
@@ -466,30 +491,8 @@
             this.Excluir.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.Excluir.Text = "Excluir";
             this.Excluir.ToolTipText = "Excluir";
-            this.Excluir.UseColumnTextForButtonValue = true;
-            // 
-            // IdProva
-            // 
-            this.IdProva.DataPropertyName = "Id";
-            this.IdProva.HeaderText = "Id";
-            this.IdProva.Name = "IdProva";
-            this.IdProva.ReadOnly = true;
-            this.IdProva.Visible = false;
-            // 
-            // Data
-            // 
-            this.Data.DataPropertyName = "Data";
-            this.Data.HeaderText = "Data";
-            this.Data.Name = "Data";
-            this.Data.ReadOnly = true;
-            this.Data.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // Cancelar
-            // 
-            this.Cancelar.HeaderText = "Cancelar";
-            this.Cancelar.Name = "Cancelar";
-            this.Cancelar.ReadOnly = true;
-            this.Cancelar.UseColumnTextForButtonValue = true;
+            this.Excluir.UseColumnTextForLinkValue = true;
+            this.Excluir.VisitedLinkColor = System.Drawing.Color.Blue;
             // 
             // FormEncomenda
             // 
@@ -551,13 +554,13 @@
         private System.Windows.Forms.TextBox txtAnotacaoProva;
         private System.Windows.Forms.DateTimePicker dtpDataPagamento;
         private System.Windows.Forms.DateTimePicker dtpDataEntregaEfet;
+        private System.Windows.Forms.DataGridViewTextBoxColumn IdProva;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Data;
+        private System.Windows.Forms.DataGridViewButtonColumn ExcluirProva;
         private System.Windows.Forms.DataGridViewTextBoxColumn IdMaterial;
         private System.Windows.Forms.DataGridViewLinkColumn Descricao;
         private System.Windows.Forms.DataGridViewTextBoxColumn Quantidade;
         private System.Windows.Forms.DataGridViewTextBoxColumn UnidadeMedida;
-        private System.Windows.Forms.DataGridViewButtonColumn Excluir;
-        private System.Windows.Forms.DataGridViewTextBoxColumn IdProva;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Data;
-        private System.Windows.Forms.DataGridViewButtonColumn Cancelar;
+        private System.Windows.Forms.DataGridViewLinkColumn Excluir;
     }
 }

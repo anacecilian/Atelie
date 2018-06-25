@@ -16,7 +16,7 @@ namespace Atelie.Forms
     {
         public const int indexColunaExcluir = 0;
         public const int indexColunaEditar = 3;
-        public const int indexColunaCancelar = 2;
+        public const int indexColunaCancelar = 0;
 
         public List<EncomendaMaterial> Materiais { get; set; } = new List<EncomendaMaterial>();
         public List<EncomendaProva> Provas { get; set; } = new List<EncomendaProva>();
@@ -33,10 +33,8 @@ namespace Atelie.Forms
             InitializeComponent();
             encomendaServico = new EncomendaServico();
             clienteServico = new ClienteServico();
-
-            List<Cliente> clientes = new List<Cliente>();
-            cmbCliente.DataSource = clientes;
-
+            cmbCliente.DataSource = clienteServico.PesquisaClientes(string.Empty, string.Empty, string.Empty);
+            
             if (EncomendaId > 0)
             {
                 encomenda = encomendaServico.RetornaEncomenda(ClienteId, EncomendaId);
@@ -47,18 +45,19 @@ namespace Atelie.Forms
 
         private void CarregarDadosEncomenda()
         {
-            cmbCliente.SelectedText = cliente.Nome;
+            cmbCliente.Text = cliente.Nome;
             cmbCliente.Enabled = false;
 
             dtpDataEntregaPrev.Text = encomenda.DataEntregaPrevista.ToShortDateString();
+            txtPreco.Text = encomenda.Preco.ToString();
             txtDescricao.Text = encomenda.Descricao;
-            dtpDataEntregaEfet.Text = encomenda.DataEntregaEfetiva.ToShortDateString();
-            dtpDataPagamento.Text = encomenda.DataPagamento.ToShortDateString();
+            dtpDataEntregaEfet.Text = encomenda.DataEntregaEfetiva != DateTime.MinValue ? encomenda.DataEntregaEfetiva.ToShortDateString() : string.Empty;
+            dtpDataPagamento.Text = encomenda.DataPagamento != DateTime.MinValue ? encomenda.DataPagamento.ToShortDateString() : string.Empty;
 
-            Materiais = encomenda.Materiais;
+            Materiais = encomenda.Materiais.Count > 0 ? encomenda.Materiais : new List<EncomendaMaterial>();
             AtualizarGridMateriais();
 
-            Provas = encomenda.Provas;
+            Provas = encomenda.Provas.Count > 0 ? encomenda.Provas : new List<EncomendaProva>();
             AtualizarGridProvas();
         }
 
@@ -140,8 +139,11 @@ namespace Atelie.Forms
             DateTime dataEntrega = DateTime.MinValue;
             DateTime dataPagamento = DateTime.MinValue;
             DateTime dataEntregaEfet = DateTime.MinValue;
+            string val = string.Empty;
+            if (cmbCliente.SelectedValue != null)
+                val = cmbCliente.SelectedValue.ToString();
 
-            Int32.TryParse(cmbCliente.SelectedValue.ToString(), out ClienteId);
+            Int32.TryParse(val, out ClienteId);
             Decimal.TryParse(txtPreco.Text, out preco);
             DateTime.TryParse(dtpDataEntregaPrev.Text, out dataEntrega);
 
@@ -211,7 +213,7 @@ namespace Atelie.Forms
             if (Provas.Any())
             {
                 dgvProva.Columns["Data"].DisplayIndex = 0;
-                dgvProva.Columns["Cancelar"].DisplayIndex = 1;
+                dgvProva.Columns["ExcluirProva"].DisplayIndex = 1;
             }
         }
 

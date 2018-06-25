@@ -34,6 +34,7 @@
             this.dtpDataEntrega = new System.Windows.Forms.DateTimePicker();
             this.dgvEncomenda = new System.Windows.Forms.DataGridView();
             this.btnPesquisar = new System.Windows.Forms.Button();
+            this.btnCancelar = new System.Windows.Forms.Button();
             this.ClienteId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.EncomendaId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.NomeCliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -41,7 +42,6 @@
             this.Descricao = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Editar = new System.Windows.Forms.DataGridViewLinkColumn();
             this.Excluir = new System.Windows.Forms.DataGridViewLinkColumn();
-            this.btnCancelar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvEncomenda)).BeginInit();
             this.SuspendLayout();
             // 
@@ -57,11 +57,13 @@
             // cmbCliente
             // 
             this.cmbCliente.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.cmbCliente.DisplayMember = "Nome";
             this.cmbCliente.FormattingEnabled = true;
             this.cmbCliente.Location = new System.Drawing.Point(16, 30);
             this.cmbCliente.Name = "cmbCliente";
             this.cmbCliente.Size = new System.Drawing.Size(291, 21);
             this.cmbCliente.TabIndex = 1;
+            this.cmbCliente.ValueMember = "Id";
             // 
             // label2
             // 
@@ -111,6 +113,16 @@
             this.btnPesquisar.Text = "Pesquisar";
             this.btnPesquisar.UseVisualStyleBackColor = true;
             this.btnPesquisar.Click += new System.EventHandler(this.btnPesquisar_Click);
+            // 
+            // btnCancelar
+            // 
+            this.btnCancelar.Location = new System.Drawing.Point(494, 447);
+            this.btnCancelar.Name = "btnCancelar";
+            this.btnCancelar.Size = new System.Drawing.Size(75, 23);
+            this.btnCancelar.TabIndex = 6;
+            this.btnCancelar.Text = "Cancelar";
+            this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
             // ClienteId
             // 
@@ -164,18 +176,10 @@
             this.Excluir.HeaderText = "Excluir";
             this.Excluir.Name = "Excluir";
             this.Excluir.ReadOnly = true;
+            this.Excluir.Text = "Excluir";
+            this.Excluir.ToolTipText = "Excluir";
             this.Excluir.UseColumnTextForLinkValue = true;
             this.Excluir.VisitedLinkColor = System.Drawing.Color.Blue;
-            // 
-            // btnCancelar
-            // 
-            this.btnCancelar.Location = new System.Drawing.Point(494, 447);
-            this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(75, 23);
-            this.btnCancelar.TabIndex = 6;
-            this.btnCancelar.Text = "Cancelar";
-            this.btnCancelar.UseVisualStyleBackColor = true;
-            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
             // FormEncomendaConsulta
             // 
@@ -205,6 +209,7 @@
         private System.Windows.Forms.DateTimePicker dtpDataEntrega;
         private System.Windows.Forms.DataGridView dgvEncomenda;
         private System.Windows.Forms.Button btnPesquisar;
+        private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.DataGridViewTextBoxColumn ClienteId;
         private System.Windows.Forms.DataGridViewTextBoxColumn EncomendaId;
         private System.Windows.Forms.DataGridViewTextBoxColumn NomeCliente;
@@ -212,6 +217,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Descricao;
         private System.Windows.Forms.DataGridViewLinkColumn Editar;
         private System.Windows.Forms.DataGridViewLinkColumn Excluir;
-        private System.Windows.Forms.Button btnCancelar;
     }
 }

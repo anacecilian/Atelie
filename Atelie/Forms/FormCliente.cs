@@ -32,6 +32,7 @@ namespace Atelie
                 cliente = clienteServico.RetornaCliente(clienteId);
                 CarregarDadosCliente();
             }
+            else cliente = new Cliente();
         }
 
         private void CarregarDadosCliente()
@@ -124,9 +125,10 @@ namespace Atelie
             cliente.ClienteEndereco.Endereco.Bairro = txtBairro.Text;
             cliente.ClienteEndereco.Endereco.CEP = txtCEPNum.Text;
             cliente.ClienteEndereco.Complemento = txtComplemento.Text;
-            cliente.ClienteEndereco.Numero = txtNumeroEnd.Text;                
+            cliente.ClienteEndereco.Numero = txtNumeroEnd.Text;
+            cliente.CPF = txtCEPNum.Text;
             
-            if (clienteServico.SalvarCliente(cliente))
+            if (clienteServico.Salvar(cliente))
             {
                 MessageBox.Show("Cliente cadastrado com sucesso.", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 this.Close();

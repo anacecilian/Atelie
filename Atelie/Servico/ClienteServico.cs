@@ -16,12 +16,26 @@ namespace Atelie.Servico
             medidaServico = new MedidaServico();
         }
 
-        public bool SalvarCliente(Cliente cliente)
+        public bool Salvar(Cliente cliente)
         {
             try
             {
                 //TODO
                 //chamar método salvar no banco 
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        public bool Excluir(int clienteId)
+        {
+            try
+            {
+                //TODO
+                //chamar método excluir no banco 
                 return true;
             }
             catch
