@@ -93,5 +93,10 @@ namespace Atelie.Forms
         {
             this.Close();
         }
+
+        private void FormClienteConsulta_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
