@@ -11,6 +11,7 @@ namespace Atelie.Servico
     public class ClienteServico
     {
         private readonly MedidaServico medidaServico;
+        private readonly ClienteEnderecoServico clienteEnderecoServico;
         private readonly DAO dao;
 
         private const string nomeCampoNome = "nome";
@@ -36,7 +37,8 @@ namespace Atelie.Servico
         public ClienteServico()
         {
             medidaServico = new MedidaServico();
-            dao = new DAO("ateliecostura", "usr", "pss");
+            clienteEnderecoServico = new ClienteEnderecoServico();
+            dao = new DAO();
         }
 
         public bool Salvar(Cliente cliente)
@@ -107,8 +109,7 @@ namespace Atelie.Servico
         {
             try
             {
-                //TODO
-                //chamar método excluir no banco 
+                dao.ApagaLinha(nomeTabelaCliente, nomeCampoIdCliente + " = " + clienteId);
                 return true;
             }
             catch
@@ -119,29 +120,67 @@ namespace Atelie.Servico
 
         public Cliente RetornaCliente(int ClienteId)
         {
-            return new Cliente
-            {
-                CPF = "39339353855"
-                ,
-                DataCadastro = DateTime.Now
-                ,
-                Id = 1
-                ,
-                Nome = "Ana Cecília"
-                ,
-                Telefone = "(14) 99803-9924"
-                ,
-                Medidas = medidaServico.PesquisaPorCliente(1)
-                ,
-                ClienteEndereco = new ClienteEndereco { }
-            };
+            var result = dao.Select(nomeTabelaCliente, nomeCampoIdCliente + " = " + ClienteId);
+
+            if (result != null && result.Count > 0)
+                return LinhaParaEntidade(result.First());
+            else
+                return new Cliente();
         }
 
         public List<Cliente> PesquisaClientes(string nome, string cpf, string telefone)
         {
             List<Cliente> clientes = new List<Cliente>();
-            clientes.Add(RetornaCliente(1));
+            List<string> filtros = new List<string>();
+
+            filtros.Add(!String.IsNullOrEmpty(nome) ? nomeCampoNome + " = " + nome : string.Empty);
+            filtros.Add(!String.IsNullOrEmpty(cpf) ? nomeCampoCPF + " = " + cpf : string.Empty);
+            filtros.Add(!String.IsNullOrEmpty(telefone) ? nomeCampoCel + " = " + telefone : string.Empty);
+
+            string filtro = string.Join(" AND ", filtros.ToArray());
+
+            var result = dao.Select(nomeTabelaCliente, filtro);
+
+            if (result != null)
+            {
+                foreach (Dictionary<string, string> entity in result)
+                {
+                    clientes.Add(LinhaParaEntidade(entity));
+                }
+            }
+
             return clientes;
+        }
+
+        private Cliente LinhaParaEntidade(Dictionary<string, string> entity)
+        {
+            Cliente retorno = new Cliente();
+            foreach (KeyValuePair<string, string> atributo in entity)
+            {
+                switch (atributo.Key)
+                {
+                    case nomeCampoNome:
+                        retorno.Nome = atributo.Value;
+                        break;
+                    case nomeCampoCPF:
+                        retorno.CPF = atributo.Value;
+                        break;
+                    case nomeCampoDataCadastro:
+                        retorno.DataCadastro = DateTime.Parse(atributo.Value);
+                        break;
+                    case nomeCampoIdCliente:
+                        retorno.Id = Convert.ToInt32(atributo.Value);
+                        break;
+                    case nomeCampoCel:
+                        retorno.Telefone = atributo.Value;
+                        break;
+                }
+            }
+
+            retorno.Medidas = medidaServico.PesquisaPorCliente(retorno.Id);
+            retorno.ClienteEndereco = clienteEnderecoServico.PesquisaPorCliente(retorno.Id);
+            
+            return retorno;
         }
     }
 }

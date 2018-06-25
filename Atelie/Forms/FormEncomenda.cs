@@ -147,9 +147,10 @@ namespace Atelie.Forms
             Decimal.TryParse(txtPreco.Text, out preco);
             DateTime.TryParse(dtpDataEntregaPrev.Text, out dataEntrega);
 
-            if (ClienteId <= 0)
-                MessageBox.Show("Selecione um cliente.", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            else if (preco <= 0)
+            //if (ClienteId <= 0)
+            //    MessageBox.Show("Selecione um cliente.", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            //else 
+            if (preco <= 0)
                 MessageBox.Show("Preço inválido.", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             else if (dataEntrega == DateTime.MinValue)
                 MessageBox.Show("Data de entrega prevista inválida.", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Warning);

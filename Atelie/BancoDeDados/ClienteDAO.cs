@@ -15,7 +15,9 @@ namespace Atelie.BancoDeDados
         private string porta;
         private MySqlConnection conexao;
 
-        public DAO(string bd, string usr, string pss, string svr = "localhost", string porta = "3306")
+        private bool exibeQuery = true;
+
+        public DAO(string bd = "ateliecostura", string usr = "root", string pss = "1234", string svr = "localhost", string porta = "3306")
         {
             PreparaConexao(bd, usr, pss, svr, porta);
             servidor = svr;
@@ -58,6 +60,7 @@ namespace Atelie.BancoDeDados
                 return false;
             }
         }
+
         private bool FechaConexao()
         {
             try
@@ -71,38 +74,27 @@ namespace Atelie.BancoDeDados
                 return false;
             }
         }
+
         public void InsereLinha(string tabela, List<string> campos, List<string> valores)
         {
             int temp = 0;
             string query = "INSERT INTO " + tabela + " (";
-            foreach (string item in campos)
-            {
-                query += item;
-                query += ", ";
-            }
-            query = query.Remove(query.Length - 2);
+            query += string.Join(",", campos.ToArray());
             query += ") VALUES(";
-            foreach (string item in valores)
-            {
-                if (int.TryParse(item, out temp)) {
-                    query += item;
-                    query += ", ";
-                }
-                else {
-                    query += "'";
-                    query += item;
-                    query += "',";
-                }
-            }
-            query = query.Remove(query.Length - 1);
+            query += string.Join(",", valores.ToArray());
             query += ")";
-            if (this.AbreConexao() == true)
+
+            if (exibeQuery)
+                MessageBox.Show(query);
+
+            if (!exibeQuery && this.AbreConexao())
             {
                 MySqlCommand cmd = new MySqlCommand(query, conexao);
                 cmd.ExecuteNonQuery();
                 this.FechaConexao();
             }
         }
+
         public void UpdateLine(string tabela, List<string> campos, List<string> valores, string filtro = "")
         {
             string query = "UPDATE " + tabela + " SET ";
@@ -119,7 +111,11 @@ namespace Atelie.BancoDeDados
             }
             if (filtro != "")
                 query += "WHERE " + filtro;
-            if (this.AbreConexao() == true)
+
+            if (exibeQuery)
+                MessageBox.Show(query);
+
+            if (!exibeQuery && this.AbreConexao())
             {
                 MySqlCommand cmd = new MySqlCommand();
                 cmd.CommandText = query;
@@ -128,30 +124,37 @@ namespace Atelie.BancoDeDados
                 this.FechaConexao();
             }
         }
+
         public void ApagaLinha(string tabela, string filtro)
         {
             string query = "DELETE FROM " + tabela + " WHERE " + filtro;
-            if (this.AbreConexao() == true)
+
+            if (exibeQuery)
+                MessageBox.Show(query);
+
+            if (!exibeQuery && this.AbreConexao())
             {
                 MySqlCommand cmd = new MySqlCommand(query, conexao);
                 cmd.ExecuteNonQuery();
                 this.FechaConexao();
             }
         }
-        public List<string>[] Select(string tabela, List<string> campos, string filtro = "", string outrosParam = "")
+
+        public List<Dictionary<string, string>> Select(string tabela, string filtro = "", string outrosParam = "")
         {
             string query = "SELECT * FROM " + tabela;
-            int qtReg = campos.Count;
             if (filtro != "")
                 query += " WHERE " + filtro;
             if (outrosParam != "")
                 query += " " + outrosParam;
-            List<string>[] list = new List<string>[qtReg];
-            for (int i = 0; i < qtReg; i++)
-            {
-                list[i] = new List<string>();
-            }
-            if (this.AbreConexao() == true)
+
+            if (exibeQuery)
+                MessageBox.Show(query);
+
+            List<Dictionary<string, string>> lista = new List<Dictionary<string, string>>();
+            Dictionary<string, string> entidade = new Dictionary<string, string>();
+
+            if (!exibeQuery && this.AbreConexao())
             {
                 MySqlCommand cmd = new MySqlCommand(query, conexao);
                 MySqlDataReader dataReader = cmd.ExecuteReader();
@@ -160,92 +163,85 @@ namespace Atelie.BancoDeDados
                     case "table_cliente":
                         while (dataReader.Read())
                         {
-                            list[0].Add(dataReader["id"] + "");
-                            list[1].Add(dataReader["nome"] + "");
-                            list[2].Add(dataReader["CPF"] + "");
-                            list[3].Add(dataReader["cel_num"] + "");
-                            list[4].Add(dataReader["data_cadastro"] + "");
-                            list[5].Add(dataReader["endereco_cod"] + "");
-                            list[6].Add(dataReader["data_criacao"] + "");
-                            list[7].Add(dataReader["data_alteracao"] + "");
-                            list[8].Add(dataReader["situacao"] + "");
+                            entidade = new Dictionary<string, string>();
+                            entidade.Add("id", dataReader["id"] + "");
+                            entidade.Add("nome", dataReader["nome"] + "");
+                            entidade.Add("CPF", dataReader["CPF"] + "");
+                            entidade.Add("cel_num", dataReader["cel_num"] + "");
+                            entidade.Add("data_cadastro", dataReader["data_cadastro"] + "");
+                            entidade.Add("endereco_cod", dataReader["enderecocod"] + "");
+                            lista.Add(entidade);
                         }
                     break;
                     case "table_medida":
                         while (dataReader.Read())
                         {
-                            list[0].Add(dataReader["id_medida"] + "");
-                            list[1].Add(dataReader["clientecod"] + "");
-                            list[2].Add(dataReader["medida"] + "");
-                            list[3].Add(dataReader["tipo"] + "");
-                            list[4].Add(dataReader["data_criacao"] + "");
-                            list[5].Add(dataReader["data_alteracao"] + "");
-                            list[6].Add(dataReader["situacao"] + "");
+                            entidade = new Dictionary<string, string>();
+                            entidade.Add("id", dataReader["id"] + "");
+                            entidade.Add("clientecod", dataReader["clientecod"] + "");
+                            entidade.Add("medida", dataReader["medida"] + "");
+                            entidade.Add("tipo", dataReader["tipo"] + "");
+                            lista.Add(entidade);
                         }
                         break;
                     case "table_endereco":
                         while (dataReader.Read())
                         {
-                            list[0].Add(dataReader["id_endereco"] + "");
-                            list[1].Add(dataReader["logradouro"] + "");
-                            list[2].Add(dataReader["bairro"] + "");
-                            list[3].Add(dataReader["CEP"] + "");
-                            list[4].Add(dataReader["data_criacao"] + "");
-                            list[5].Add(dataReader["data_alteracao"] + "");
-                            list[6].Add(dataReader["situacao"] + "");
+                            entidade = new Dictionary<string, string>();
+                            entidade.Add("id", dataReader["id"] + "");
+                            entidade.Add("logradouro", dataReader["logradouro"] + "");
+                            entidade.Add("bairro", dataReader["bairro"] + "");
+                            entidade.Add("CEP", dataReader["CEP"] + "");
+                            lista.Add(entidade);
                         }
                         break;
                     case "table_clienteendereco":
                         while (dataReader.Read())
                         {
-                            list[0].Add(dataReader["clienteend_cod"] + "");
-                            list[1].Add(dataReader["enderecod"] + "");
-                            list[2].Add(dataReader["numero"] + "");
-                            list[3].Add(dataReader["complemento"] + "");
-                            list[4].Add(dataReader["data_criacao"] + "");
-                            list[5].Add(dataReader["data_alteracao"] + "");
-                            list[6].Add(dataReader["situacao"] + "");
+                            entidade = new Dictionary<string, string>();
+                            entidade.Add("clientecod", dataReader["clientecod"] + "");
+                            entidade.Add("enderecocod", dataReader["enderecocod"] + "");
+                            entidade.Add("numero", dataReader["numero"] + "");
+                            entidade.Add("complemento", dataReader["complemento"] + "");
+                            lista.Add(entidade);
                         }
                         break;
                     case "table_encomenda":
                         while (dataReader.Read())
                         {
-                            list[0].Add(dataReader["id_encomenda"] + "");
-                            list[1].Add(dataReader["clientecod"] + "");
-                            list[2].Add(dataReader["preco"] + "");
-                            list[3].Add(dataReader["anotacao"] + "");
-                            list[4].Add(dataReader["data_pagamento"] + "");
-                            list[5].Add(dataReader["data_entrega_prevista"] + "");
-                            list[6].Add(dataReader["data_entrega_efetiva"] + "");
-                            list[7].Add(dataReader["data_criacao"] + "");
-                            list[8].Add(dataReader["data_alteracao"] + "");
-                            list[9].Add(dataReader["situacao"] + "");
+                            entidade = new Dictionary<string, string>();
+                            entidade.Add("id", dataReader["id"] + "");
+                            entidade.Add("clientecod", dataReader["clientecod"] + "");
+                            entidade.Add("preco", dataReader["preco"] + "");
+                            entidade.Add("anotacao", dataReader["anotacao"] + "");
+                            entidade.Add("data_pagamento", dataReader["data_pagamento"] + "");
+                            entidade.Add("data_entrega_prevista", dataReader["data_entrega_prevista"] + "");
+                            entidade.Add("data_entrega_efetiva", dataReader["data_entrega_efetiva"] + "");
+                            lista.Add(entidade);
                         }
                         break;
                     case "table_prova":
                         while (dataReader.Read())
                         {
-                            list[0].Add(dataReader["id_prova"] + "");
-                            list[1].Add(dataReader["encomendacod"] + "");
-                            list[2].Add(dataReader["dia"] + "");
-                            list[3].Add(dataReader["horario"] + "");
-                            list[4].Add(dataReader["anotacao"] + "");
-                            list[5].Add(dataReader["data_criacao"] + "");
-                            list[6].Add(dataReader["data_alteracao"] + "");
-                            list[7].Add(dataReader["situacao"] + "");
+                            entidade = new Dictionary<string, string>();
+                            entidade.Add("id", dataReader["id"] + "");
+                            entidade.Add("encomendacod", dataReader["encomendacod"] + "");
+                            entidade.Add("dia", dataReader["dia"] + "");
+                            entidade.Add("horario", dataReader["horario"] + "");
+                            entidade.Add("anotacao", dataReader["anotacao"] + "");
+                            lista.Add(entidade);
                         }
                         break;
                     case "table_material":
                         while (dataReader.Read())
                         {
-                            list[0].Add(dataReader["id_material"] + "");
-                            list[1].Add(dataReader["encomendacod"] + "");
-                            list[2].Add(dataReader["descricao"] + "");
-                            list[3].Add(dataReader["quantidade"] + "");
-                            list[4].Add(dataReader["uni_medida"] + "");
-                            list[5].Add(dataReader["data_criacao"] + "");
-                            list[6].Add(dataReader["data_alteracao"] + "");
-                            list[7].Add(dataReader["situacao"] + "");
+                            entidade = new Dictionary<string, string>();
+                            entidade.Add("id", dataReader["id"] + "");
+                            entidade.Add("encomendacod", dataReader["encomendacod"] + "");
+                            entidade.Add("descricao", dataReader["descricao"] + "");
+                            entidade.Add("quantidade", dataReader["quantidade"] + "");
+                            entidade.Add("uni_medida", dataReader["uni_medida"] + "");
+                            lista.Add(entidade);
                         }
                         break;
                     default:
@@ -254,11 +250,11 @@ namespace Atelie.BancoDeDados
                 }
                 dataReader.Close();
                 this.FechaConexao();
-                return list;
+                return lista;
             }
             else
             {
-                return list;
+                return null;
             }
         }
     }

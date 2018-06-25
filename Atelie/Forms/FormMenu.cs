@@ -7,7 +7,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Atelie.Model;
 
 namespace Atelie.Forms
 {
@@ -18,7 +17,6 @@ namespace Atelie.Forms
         FormEncomenda formEncomenda;
         FormEncomendaConsulta formEncomendaConsulta;
         FormProvaConsulta formProvaConsulta;
-        ConectaBanco conexao;
 
         public FormMenu()
         {
